@@ -26,4 +26,8 @@ public class VeiculoService {
     public Veiculo modificar (Veiculo veiculo) {
         return repository.save(veiculo);
     }
+
+    public void deletar (Long id) {
+        repository.deleteById(id);
+    }
 }

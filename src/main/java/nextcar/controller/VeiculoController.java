@@ -30,4 +30,9 @@ public class VeiculoController {
     public Veiculo modificar (@RequestBody Veiculo veiculo) {
         return service.modificar(veiculo);
     }
+
+    @DeleteMapping("/{id}")
+    public void deletar (@PathVariable long id) {
+        service.deletar(id);
+    }
 }
