@@ -37,6 +37,7 @@ public class VeiculoService {
     }
 
     public void deletar (Long id) {
-        repository.deleteById(id);
+        Veiculo veiculo = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Veiculo não encontrado"));
+        repository.delete(veiculo);
     }
 }
