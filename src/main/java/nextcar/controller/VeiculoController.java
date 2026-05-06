@@ -26,9 +26,9 @@ public class VeiculoController {
         return service.listar();
     }
 
-    @PutMapping("/modificar")
-    public Veiculo modificar (@RequestBody Veiculo veiculo) {
-        return service.modificar(veiculo);
+    @PutMapping("/{id}")
+    public Veiculo modificar (@PathVariable Long id, @RequestBody Veiculo veiculo) {
+        return service.modificar(id, veiculo);
     }
 
     @DeleteMapping("/{id}")
