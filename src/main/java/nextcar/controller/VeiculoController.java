@@ -16,13 +16,18 @@ public class VeiculoController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("inserir")
     public Veiculo salvar(@RequestBody Veiculo veiculo) {
         return service.salvar(veiculo);
     }
 
-    @GetMapping
+    @GetMapping("/mostrar")
     public List<Veiculo> listar() {
         return service.listar();
+    }
+
+    @PutMapping("/modificar")
+    public Veiculo modificar (@RequestBody Veiculo veiculo) {
+        return service.modificar(veiculo);
     }
 }

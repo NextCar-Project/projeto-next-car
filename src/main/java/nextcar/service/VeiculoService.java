@@ -22,4 +22,8 @@ public class VeiculoService {
     public List<Veiculo> listar() {
         return repository.findAll();
     }
+
+    public Veiculo modificar (Veiculo veiculo) {
+        return repository.save(veiculo);
+    }
 }
