@@ -20,4 +20,8 @@ public class UsuarioService {
     public List<Usuario> find (Usuario usuario) {
         return repository.findAll();
     }
+
+    public void delete (Long id) {
+        repository.deleteById(id);
+    }
 }
