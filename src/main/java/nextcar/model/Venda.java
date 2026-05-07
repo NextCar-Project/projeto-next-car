@@ -17,4 +17,5 @@ public class Venda {
 
     private LocalDate data;
     private double valorFinal;
+    private Veiculo veiculo;
 }
