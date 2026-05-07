@@ -9,7 +9,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/veiculos")
 public class VeiculoController {
-
     private final VeiculoService service;
 
     public VeiculoController(VeiculoService service) {
@@ -17,22 +16,22 @@ public class VeiculoController {
     }
 
     @PostMapping("inserir")
-    public Veiculo salvar(@RequestBody Veiculo veiculo) {
-        return service.salvar(veiculo);
+    public Veiculo save(@RequestBody Veiculo veiculo) {
+        return service.save(veiculo);
     }
 
-    @GetMapping("/mostrar")
-    public List<Veiculo> listar() {
-        return service.listar();
+    @GetMapping("mostrar")
+    public List<Veiculo> find(Veiculo veiculo) {
+        return service.find(veiculo);
     }
 
-    @PutMapping("/{id}")
-    public Veiculo modificar (@PathVariable Long id, @RequestBody Veiculo veiculo) {
-        return service.modificar(id, veiculo);
+    @PutMapping("{id}")
+    public Veiculo update(@RequestBody Veiculo veiculo, @PathVariable Long id) {
+        return service.update(veiculo, id );
     }
 
-    @DeleteMapping("/{id}")
-    public void deletar (@PathVariable long id) {
-        service.deletar(id);
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
 }
