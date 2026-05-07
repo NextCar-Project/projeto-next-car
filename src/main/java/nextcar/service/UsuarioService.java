@@ -25,9 +25,9 @@ public class UsuarioService {
     public Usuario update (Usuario usuarioNovo, Long id) {
         Usuario usuarioExiste = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
 
-        usuarioExiste.setNome(usuarioExiste.getNome());
-        usuarioExiste.setLogin(usuarioExiste.getLogin());
-        usuarioExiste.setSenha(usuarioExiste.getSenha());
+        usuarioExiste.setNome(usuarioNovo.getNome());
+        usuarioExiste.setLogin(usuarioNovo.getLogin());
+        usuarioExiste.setSenha(usuarioNovo.getSenha());
 
         return repository.save(usuarioExiste);
     }
