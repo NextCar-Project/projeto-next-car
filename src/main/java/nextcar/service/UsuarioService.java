@@ -1,5 +1,6 @@
 package nextcar.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import nextcar.model.Usuario;
 import nextcar.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class UsuarioService {
     }
 
     public void delete (Long id) {
-        repository.deleteById(id);
+        Usuario usuario = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
+        repository.delete(usuario);
     }
 }
