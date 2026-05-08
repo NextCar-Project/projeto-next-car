@@ -18,4 +18,5 @@ public class Veiculo {
     private Integer ano;
     private Double preco;
     private String tipo;
+    private String status;
 }
