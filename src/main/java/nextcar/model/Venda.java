@@ -17,5 +17,7 @@ public class Venda {
 
     private LocalDate data;
     private double valorFinal;
+    @ManyToOne
+    @JoinColumn(name = "veiculo_id")
     private Veiculo veiculo;
 }
