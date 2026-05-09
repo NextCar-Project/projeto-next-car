@@ -56,7 +56,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
   <img src="assets/Mateus.jpg" width="120px" alt="Pessoa 3"/>
 
-  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 4"/>
+  <img src="assets/Marcos.jpg" width="120px" alt="Pessoa 4"/>
 
   <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 5"/>
 
