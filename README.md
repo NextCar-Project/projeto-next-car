@@ -48,6 +48,38 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 👩‍💻 Integrantes
 
+<div align="center">
+
+<a href="https://seulink1.com">
+  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 1"/>
+</a>
+<a href="https://seulink2.com">
+  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 2"/>
+</a>
+<a href="https://seulink3.com">
+  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 3"/>
+</a>
+<a href="https://seulink4.com">
+  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 4"/>
+</a>
+<a href="https://seulink5.com">
+  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 5"/>
+</a>
+<a href="https://seulink6.com">
+  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 6"/>
+</a>
+
+<br><br>
+
+<a href="https://seulink1.com"><sub><b>Emerson Dias</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://seulink2.com"><sub><b>Lucas Hudson</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://seulink3.com"><sub><b>Marcela Cantalice</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://seulink4.com"><sub><b>Marcos Dalyson</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://seulink5.com"><sub><b>Mateus Oliveira</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://seulink6.com"><sub><b>Rosalvo Alves</b></sub></a>
+
+</div>
+
 
 ## :memo: Licença
 
