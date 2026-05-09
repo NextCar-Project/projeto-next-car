@@ -50,25 +50,25 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 <div align="center">
 
-  <img src="assets/Emerson.jpg" width="120px" alt="Pessoa 1"/>
+  <img src="assets/Emerson.png" width="120px" alt="Pessoa 1"/>
 
-  <img src="assets/Lucas.jpg" width="124px" alt="Pessoa 2"/>
+  <img src="assets/Lucas.png" width="124px" alt="Pessoa 2"/>
 
-  <img src="assets/Mateus.jpg" width="120px" alt="Pessoa 3"/>
+  <img src="assets/Marcela.png" width="120px" alt="Pessoa 3"/>
 
-  <img src="assets/Marcos.jpg" width="120px" alt="Pessoa 4"/>
+  <img src="assets/Marcos.png" width="120px" alt="Pessoa 4"/>
 
-  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 5"/>
+  <img src="assets/Mateus.png" width="120px" alt="Pessoa 5"/>
 
-  <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 6"/>
+  <img src="assets/Rosalvo.png" width="120px" alt="Pessoa 6"/>
 
 
-<a href="https://www.linkedin.com/in/emerson-willian-19984630b/"><sub><b>Emerson Dias</b></sub></a> &nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/lucas-hudson-1245bb409/"><sub><b>Lucas Hudson</b></sub></a> &nbsp;&nbsp;&nbsp;
-<a href="https://seulink3.com"><sub><b>Marcela Cantalice</b></sub></a> &nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/marcos-dalyson-9457373b3?utm_source=share_via&utm_content=profile&utm_medium=member_android"><sub><b>Marcos Dalyson</b></sub></a> &nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/mateus-oliveira-172492213"><sub><b>Mateus Oliveira</b></sub></a> &nbsp;&nbsp;&nbsp;
-<a href="https://seulink6.com"><sub><b>Rosalvo Alves</b></sub></a>
+<a href="https://www.linkedin.com/in/emerson-willian-19984630b/"><sub><b>Emerson Dias</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/lucas-hudson-1245bb409/"><sub><b>Lucas Hudson</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://seulink3.com"><sub><b>Marcela Cantalice</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/marcos-dalyson-9457373b3?utm_source=share_via&utm_content=profile&utm_medium=member_android"><sub><b>Marcos Dalyson</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/mateus-oliveira-172492213"><sub><b>Mateus Oliveira</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/rosalvo-alves-de-oliveira-filho-928521391/"><sub><b>Rosalvo Alves</b></sub></a>
 
 </div>
 
