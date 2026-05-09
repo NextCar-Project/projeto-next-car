@@ -63,11 +63,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   <img src="https://via.placeholder.com/120" width="120px" alt="Pessoa 6"/>
 
 
-<a href="https://seulink1.com"><sub><b>Emerson Dias</b></sub></a> &nbsp;&nbsp;&nbsp;
-<a href="https://seulink2.com"><sub><b>Lucas Hudson</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/emerson-willian-19984630b/"><sub><b>Emerson Dias</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/lucas-hudson-1245bb409/"><sub><b>Lucas Hudson</b></sub></a> &nbsp;&nbsp;&nbsp;
 <a href="https://seulink3.com"><sub><b>Marcela Cantalice</b></sub></a> &nbsp;&nbsp;&nbsp;
-<a href="https://seulink4.com"><sub><b>Marcos Dalyson</b></sub></a> &nbsp;&nbsp;&nbsp;
-<a href="https://seulink5.com"><sub><b>Mateus Oliveira</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/marcos-dalyson-9457373b3?utm_source=share_via&utm_content=profile&utm_medium=member_android"><sub><b>Marcos Dalyson</b></sub></a> &nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/mateus-oliveira-172492213"><sub><b>Mateus Oliveira</b></sub></a> &nbsp;&nbsp;&nbsp;
 <a href="https://seulink6.com"><sub><b>Rosalvo Alves</b></sub></a>
 
 </div>
