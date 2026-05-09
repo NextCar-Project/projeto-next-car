@@ -10,7 +10,7 @@ Projeto desenvolvido durante a disciplina de Análise e Projeto de Software.
   <a href="#-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-fluxo-do-sistema">Fluxo do Sistema</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-arquitetura-c4-model">Arquitetura (C4 Model)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#-integrantes">Integrantes</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-integrantes">Integrantes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-licença">Licença</a>
 </p>
 
@@ -46,7 +46,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🏗️ Arquitetura (C4 Model)
 
-## 👩‍💻 Integrantes
+## 👥 Integrantes
 
 <div align="center">
 
