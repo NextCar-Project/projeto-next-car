@@ -3,18 +3,23 @@ package nextcar.service;
 import jakarta.persistence.EntityNotFoundException;
 import nextcar.model.Usuario;
 import nextcar.repository.UsuarioRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class UsuarioService {
     private final UsuarioRepository repository;
+    private final BCryptPasswordEncoder encoder;
 
-    public UsuarioService (UsuarioRepository repository) {
+    public UsuarioService (UsuarioRepository repository,  BCryptPasswordEncoder encoder) {
         this.repository = repository;
+        this.encoder = encoder;
     }
 
     public Usuario save (Usuario usuario) {
+        String senha = encoder.encode(usuario.getSenha());
+        usuario.setSenha(senha);
        return repository.save(usuario);
     }
 
