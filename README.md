@@ -52,7 +52,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
   <img src="assets/Emerson.jpg" width="120px" alt="Pessoa 1"/>
 
-  <img src="assets/Lucas.jpg" width="120px" alt="Pessoa 2"/>
+  <img src="assets/Lucas.jpg" width="124px" alt="Pessoa 2"/>
 
   <img src="assets/Mateus.jpg" width="120px" alt="Pessoa 3"/>
 
