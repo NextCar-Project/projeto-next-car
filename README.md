@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="#-tecnologias">Projeto</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#-projeto">Tecnologias</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-fluxo-do-sistema">Fluxo do Sistema</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-arquitetura-c4-model">Arquitetura (C4 Model)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
