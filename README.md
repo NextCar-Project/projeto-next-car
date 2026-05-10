@@ -35,8 +35,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - Java
 - Spring Boot
-- IntelliJ
 - MySQL
+- IntelliJ
 - Postman
 - Git e Github
 
