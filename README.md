@@ -43,6 +43,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🛠️ Funcionalidades
 
+- Gestão de Inventário: Registo completo de veículos, incluindo marca, modelo, ano, quilometragem e especificaçõesoes técnicas.
+- Módulo de Vendas: Fluxo estruturado para o registo de transaçõoes e histórico de negociações.
+- Painel Administrativo: Visualização rápida de métricas de entrada e saída, facilitando o controlo do stock.
+- Interface Otimizada: Foco na experiência do utilizador para agilizar o processo de gestão e venda.
+
 ## 🧭 Fluxo do Sistema
 
 ## 🏗️ Arquitetura (C4 Model)
