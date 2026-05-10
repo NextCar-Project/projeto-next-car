@@ -11,7 +11,7 @@ Projeto desenvolvido durante a disciplina de Análise e Projeto de Software.
   <a href="#-fluxo-do-sistema">Fluxo do Sistema</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#%EF%B8%8F-arquitetura-c4-model">Arquitetura (C4 Model)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-integrantes-">Integrantes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-licença">Licença</a>
+  <a href="#-licenca">Licença</a>
 </p>
 
 <p align="center">
