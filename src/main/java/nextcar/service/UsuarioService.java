@@ -12,7 +12,7 @@ public class UsuarioService {
     private final UsuarioRepository repository;
     private final BCryptPasswordEncoder encoder;
 
-    public UsuarioService (UsuarioRepository repository,  BCryptPasswordEncoder encoder) {
+    public UsuarioService (UsuarioRepository repository,  PasswordEncoder encoder) {
         this.repository = repository;
         this.encoder = encoder;
     }
@@ -33,6 +33,9 @@ public class UsuarioService {
         usuarioExiste.setNome(usuarioNovo.getNome());
         usuarioExiste.setLogin(usuarioNovo.getLogin());
         usuarioExiste.setSenha(usuarioNovo.getSenha());
+
+        String senha = encoder.encode(usuarioExiste.getSenha());
+        usuarioExiste.setSenha(senha);
 
         return repository.save(usuarioExiste);
     }
