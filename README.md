@@ -70,8 +70,32 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 <a href="https://www.linkedin.com/in/marcos-dalyson-9457373b3?utm_source=share_via&utm_content=profile&utm_medium=member_android"><sub><b>Marcos Dalyson</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://www.linkedin.com/in/mateus-oliveira-172492213"><sub><b>Mateus Oliveira</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://www.linkedin.com/in/rosalvo-alves-de-oliveira-filho-928521391/"><sub><b>Rosalvo Alves</b></sub></a>
-
 </div>
+
+## 👨‍💻 Integrantes
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/Emerson.png" width="120px;" alt="Foto do Emerson"/><br>
+      <a href="https://www.linkedin.com/in/emerson-willian-19984630b/" target="_blank">
+        <sub><b>Emerson Dias</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/usuario2.png" width="120px;" alt="Foto do João"/><br>
+      <a href="https://www.linkedin.com/in/joao/" target="_blank">
+        <sub><b>João Silva</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/usuario3.png" width="120px;" alt="Foto da Maria"/><br>
+      <a href="https://www.linkedin.com/in/maria/" target="_blank">
+        <sub><b>Maria Souza</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
 
 ## :memo: Licença
