@@ -10,25 +10,75 @@
 
 <div class="container">
 
-    <h1>Cadastro de Usuário</h1>
+    <header>
+        <h1>NextCar</h1>
+        <p>Sistema de gerenciamento de veículos e vendas</p>
+    </header>
 
-    <input type="text" id="nome" placeholder="Nome">
+    <section class="card">
 
-    <input type="email" id="login" placeholder="Email">
+        <h2>Cadastro de Usuário</h2>
 
-    <input type="password" id="senha" placeholder="Senha">
+        <input type="text" id="nome" placeholder="Nome"> <input type="email" id="login" placeholder="Email">
+        <input type="password" id="senha" placeholder="Senha">
 
-    <button onclick="salvarUsuario()">
-        Salvar
-    </button>
+        <button onclick="salvarUsuario()">
+            Salvar Usuário
+        </button>
 
-    <button onclick="listarUsuarios()">
-        Listar
-    </button>
+    </section>
 
-    <div id="usuarios"></div>
+    <section class="card">
 
-</div>
+        <h2>Cadastro de Veículo</h2>
+
+        <input type="text" id="marca" placeholder="Marca">
+        <input type="text" id="modelo" placeholder="Modelo">
+        <input type="number" id="ano" placeholder="Ano">
+        <input type="number" id="preco" placeholder="Preço">
+        <input type="text" id="tipo" placeholder="Tipo">
+        <input type="text" id="status" placeholder="Status">
+
+        <button onclick="salvarVeiculo()">
+            Salvar Veículo
+        </button>
+
+    </section>
+
+    <section class="card">
+
+        <h2>Cadastro de Venda</h2>
+        <input type="date" id="dataVenda">
+        <input type="number" id="valorFinal" placeholder="Valor Final">
+        <input type="number" id="veiculoId" placeholder="ID do Veículo">
+        <input type="number" id="usuarioId" placeholder="ID do Usuário">
+
+        <button onclick="salvarVenda()">
+            Salvar Venda
+        </button>
+
+    </section>
+
+    <section class="card">
+
+        <h2>Usuários</h2>
+        <div id="usuarios"></div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>Veículos</h2>
+        <div id="veiculos"></div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>Vendas</h2>
+        <div id="vendas"></div>
+
+    </section></div>
 
 <script src="script.js"></script>
 </body>
