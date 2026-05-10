@@ -52,6 +52,39 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🏗️ Arquitetura (C4 Model)
 
+## Contexto do Sistema
+
+``` mermaid
+flowchart LR
+
+E[Empresário/Funcionário]  --> N[Next Car]
+
+
+N --> DB[(Banco de Dados)]
+N --> P[Processo de Registro]
+N --> V[Vizualização dos dados]
+```
+
+## Componentes
+
+``` mermaid
+flowchart LR
+
+API[API da Aplicação]
+
+Inventário[Gestão de Inventário]
+Negociações[Registro de Negociações]
+
+
+DB[(Banco de Dados)]
+
+API --> Inventário
+API --> Negociações
+
+Inventário --> DB
+Negociações --> DB
+```
+
 ## 👨‍💻 Integrantes
 
 <table>
