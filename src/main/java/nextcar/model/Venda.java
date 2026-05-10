@@ -17,11 +17,13 @@ public class Venda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Data obrigatoria")
     private LocalDate data;
     @Positive
+    @NotNull(message = "Valor obrigatorio")
     private double valorFinal;
     @ManyToOne
     @JoinColumn(name = "veiculo_id")
+    @NotNull(message = "Veiculo obrigatorio")
     private Veiculo veiculo;
 }
