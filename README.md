@@ -76,6 +76,7 @@ N --> DB[(Banco de Dados)]
 N --> P[Processo de Registro]
 N --> V[Vizualização dos dados]
 ```
+## Containers
 
 ## Componentes
 
