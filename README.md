@@ -52,7 +52,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🏗️ Arquitetura (C4 Model)
 
-<h2 id="integrantes"👨‍💻 Integrantes</h2>
+## 👨‍💻 Integrantes
 
 <table>
   <tr>
