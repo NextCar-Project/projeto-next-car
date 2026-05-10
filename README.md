@@ -47,31 +47,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🏗️ Arquitetura (C4 Model)
 
-## 👥 Integrantes
-
-<div align="center">
-
-  <img src="assets/Emerson.png" width="120px" alt="Pessoa 1"/>
-
-  <img src="assets/Lucas.png" width="124px" alt="Pessoa 2"/>
-
-  <img src="assets/Marcela.png" width="120px" alt="Pessoa 3"/>
-
-  <img src="assets/Marcos.png" width="120px" alt="Pessoa 4"/>
-
-  <img src="assets/Mateus.png" width="120px" alt="Pessoa 5"/>
-
-  <img src="assets/Rosalvo.png" width="120px" alt="Pessoa 6"/>
-
-
-<a href="https://www.linkedin.com/in/emerson-willian-19984630b/"><sub><b>Emerson Dias</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/lucas-hudson-1245bb409/"><sub><b>Lucas Hudson</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://seulink3.com"><sub><b>Marcela Cantalice</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/marcos-dalyson-9457373b3?utm_source=share_via&utm_content=profile&utm_medium=member_android"><sub><b>Marcos Dalyson</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/mateus-oliveira-172492213"><sub><b>Mateus Oliveira</b></sub></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/rosalvo-alves-de-oliveira-filho-928521391/"><sub><b>Rosalvo Alves</b></sub></a>
-</div>
-
 ## 👨‍💻 Integrantes
 
 <table>
@@ -83,15 +58,35 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
       </a>
     </td>
     <td align="center">
-      <img src="https://github.com/usuario2.png" width="120px;" alt="Foto do João"/><br>
-      <a href="https://www.linkedin.com/in/joao/" target="_blank">
-        <sub><b>João Silva</b></sub>
+      <img src="assets/Lucas.png" width="120px;" alt="Foto do Lucas"/><br>
+      <a href="https://www.linkedin.com/in/lucas-hudson-1245bb409/" target="_blank">
+        <sub><b>Lucas Hudson</b></sub>
       </a>
     </td>
     <td align="center">
-      <img src="https://github.com/usuario3.png" width="120px;" alt="Foto da Maria"/><br>
+      <img src="assets/Marcela.png" width="120px;" alt="Foto da Marcela"/><br>
       <a href="https://www.linkedin.com/in/maria/" target="_blank">
-        <sub><b>Maria Souza</b></sub>
+        <sub><b>Marcela Cantalice</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <img src="assets/Marcos.png" width="120px;" alt="Foto do Marcos"/><br>
+      <a href="https://www.linkedin.com/in/marcos-dalyson-9457373b3?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">
+        <sub><b>Marcos Dalyson</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <img src="assets/Mateus.png" width="120px;" alt="Foto do Mateus"/><br>
+      <a href="https://www.linkedin.com/in/mateus-oliveira-172492213" target="_blank">
+        <sub><b>Mateus Oliveira</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <img src="assets/Rosalvo.png" width="120px;" alt="Foto da Rosalvo"/><br>
+      <a href="https://www.linkedin.com/in/rosalvo-alves-de-oliveira-filho-928521391/" target="_blank">
+        <sub><b>Rosalvo Alves</b></sub>
+      </a>
+    </td>
       </a>
     </td>
   </tr>
