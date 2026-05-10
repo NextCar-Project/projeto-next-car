@@ -20,9 +20,9 @@ public class UsuarioController {
         return service.save(usuario);
     }
 
-    @GetMapping("mostrar")
-    public List<Usuario> find (Usuario usuario) {
-        return service.find(usuario);
+    @GetMapping
+    public List<Usuario> find () {
+        return service.find();
     }
 
     @PutMapping("{id}")

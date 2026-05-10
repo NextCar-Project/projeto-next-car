@@ -19,7 +19,7 @@ public class VendaService {
         return repository.save(venda);
     }
 
-    public List<Venda> find(Venda venda){
+    public List<Venda> find(){
         return repository.findAll();
     }
 

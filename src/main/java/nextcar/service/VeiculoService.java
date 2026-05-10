@@ -20,7 +20,7 @@ public class VeiculoService {
         return repository.save(veiculo);
     }
 
-    public List<Veiculo> find(Veiculo veiculo) {
+    public List<Veiculo> find() {
         return repository.findAll();
     }
 

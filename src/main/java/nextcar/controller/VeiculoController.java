@@ -20,9 +20,9 @@ public class VeiculoController {
         return service.save(veiculo);
     }
 
-    @GetMapping("mostrar")
-    public List<Veiculo> find(Veiculo veiculo) {
-        return service.find(veiculo);
+    @GetMapping
+    public List<Veiculo> find() {
+        return service.find();
     }
 
     @PutMapping("{id}")
