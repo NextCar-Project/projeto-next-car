@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextCar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Cadastro de Usuário</h1>
+
+    <input type="text" id="nome" placeholder="Nome">
+
+    <input type="email" id="login" placeholder="Email">
+
+    <input type="password" id="senha" placeholder="Senha">
+
+    <button onclick="salvarUsuario()">
+        Salvar
+    </button>
+
+    <button onclick="listarUsuarios()">
+        Listar
+    </button>
+
+    <div id="usuarios"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
