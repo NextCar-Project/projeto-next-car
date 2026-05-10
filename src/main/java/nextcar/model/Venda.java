@@ -26,4 +26,8 @@ public class Venda {
     @JoinColumn(name = "veiculo_id")
     @NotNull(message = "Veiculo obrigatorio")
     private Veiculo veiculo;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    @NotNull(message = "Usuario obrigatorio")
+    private Usuario usuario;
 }
