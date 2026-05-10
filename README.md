@@ -98,6 +98,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 </table>
 
 
-## :memo: Licença
+## 📝Licença
 
 Esse projeto está sob a licença MIT.
