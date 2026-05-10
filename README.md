@@ -38,7 +38,7 @@ Projeto desenvolvido durante a disciplina de Análise e Projeto de Software.
 <br>
 
 <p align="center">
-  <img alt="img" src="assets/Logo_NextCar.png" width="100%">
+  <img alt="img" src="assets/Logo - Next Car.png" width="100%">
 </p>
 
 ## 🌐 Documentação
