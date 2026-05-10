@@ -96,6 +96,18 @@ N --> V[Vizualização dos dados]
 ```
 ## Containers
 
+``` mermaid
+flowchart LR
+
+User[Usuário]
+
+Backend[Aplicação Next Car]
+DB[(Banco de Dados)]
+
+User --> Backend
+Backend --> DB
+```
+
 ## Componentes
 
 ``` mermaid
