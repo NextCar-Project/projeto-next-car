@@ -18,10 +18,11 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotNull(message = "Nome obrigatorio")
     private String nome;
     @Email
+    @NotNull(message = "Login obrigatorio")
     private String login;
-    @NotNull
+    @NotNull(message = "Senha obrigatoria")
     private String senha;
 }
