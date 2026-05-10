@@ -50,6 +50,18 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🧭 Fluxo do Sistema
 
+``` mermaid
+flowchart LR
+
+A[Cadastro de Veículo] --> B[Entrada no Inventário]
+B --> C[Stock Disponível]
+C --> D[Negociação / Reserva]
+D --> E[Venda Confirmada]
+E --> F[Atualização de Status: Vendido]
+F --> G[Atualização do Painel Administrativo]
+G --> H[Relatórios e Indicadores]
+```
+
 ## 🏗️ Arquitetura (C4 Model)
 
 ## Contexto do Sistema
