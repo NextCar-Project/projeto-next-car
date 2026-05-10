@@ -3,7 +3,6 @@ package nextcar.service;
 import jakarta.persistence.EntityNotFoundException;
 import nextcar.model.Usuario;
 import nextcar.repository.UsuarioRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
