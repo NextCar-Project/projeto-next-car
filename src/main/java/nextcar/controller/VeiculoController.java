@@ -15,7 +15,7 @@ public class VeiculoController {
         this.service = service;
     }
 
-    @PostMapping("inserir")
+    @PostMapping
     public Veiculo save(@RequestBody Veiculo veiculo) {
         return service.save(veiculo);
     }

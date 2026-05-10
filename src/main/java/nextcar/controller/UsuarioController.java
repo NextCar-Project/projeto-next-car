@@ -15,7 +15,7 @@ public class UsuarioController {
         this.service = service;
     }
 
-    @PostMapping("inserir")
+    @PostMapping
     public Usuario save (@RequestBody Usuario usuario) {
         return service.save(usuario);
     }

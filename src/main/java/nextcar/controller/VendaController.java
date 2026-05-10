@@ -15,14 +15,14 @@ public class VendaController {
         this.service = service;
     }
 
-    @PostMapping("inserir")
+    @PostMapping
     public Venda save(@RequestBody Venda venda) {
         return service.save(venda);
     }
 
-    @GetMapping("mostrar")
-    public List<Venda> find(Venda venda) {
-        return service.find(venda);
+    @GetMapping
+    public List<Venda> find() {
+        return service.find();
     }
 
     @PutMapping("{id}")
