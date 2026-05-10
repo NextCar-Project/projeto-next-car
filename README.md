@@ -5,14 +5,31 @@ Projeto desenvolvido durante a disciplina de Análise e Projeto de Software.
 </p>
 
 <p align="center">
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#%EF%B8%8F-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#-fluxo-do-sistema">Fluxo do Sistema</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#%EF%B8%8F-arquitetura-c4-model">Arquitetura (C4 Model)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#-integrantes-">Integrantes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-fluxo-do-sistema">Fluxo do Sistema</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-arquitetura-c4-model">Arquitetura (C4 Model)</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-estrutura-da-documentação">Estrutura da Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-integrantes">Integrantes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-licença">Licença</a>
 </p>
+
+<!-- <p align="center">
+  <a href="#-documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-fluxo-do-sistema">Fluxo do Sistema</a>
+</p>
+
+<p align="center">
+  <a href="#%EF%B8%8F-arquitetura-c4-model">Arquitetura (C4 Model)</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-integrantes">Integrantes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-estrutura-da-documentação">Estrutura da Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-licença">Licença</a>
+</p> -->
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
@@ -21,9 +38,10 @@ Projeto desenvolvido durante a disciplina de Análise e Projeto de Software.
 <br>
 
 <p align="center">
-  <img alt="img" src="assets/Logo_NextCar.png" width="100%">
+  <img alt="img" src="assets/Logo - Next Car.png" width="100%">
 </p>
 
+## 🌐 Documentação
 
 ## 💻 Projeto
 
@@ -76,6 +94,19 @@ N --> DB[(Banco de Dados)]
 N --> P[Processo de Registro]
 N --> V[Vizualização dos dados]
 ```
+## Containers
+
+``` mermaid
+flowchart LR
+
+User[Usuário]
+
+Backend[Aplicação Next Car]
+DB[(Banco de Dados)]
+
+User --> Backend
+Backend --> DB
+```
 
 ## Componentes
 
@@ -96,6 +127,8 @@ API --> Negociações
 Inventário --> DB
 Negociações --> DB
 ```
+
+## 📂 Estrutura da Documentação
 
 ## 👨‍💻 Integrantes
 
@@ -142,7 +175,6 @@ Negociações --> DB
   </tr>
 </table>
 
-
-## 📝Licença
+## 📝 Licença
 
 Esse projeto está sob a licença MIT.
