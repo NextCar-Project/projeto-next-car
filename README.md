@@ -7,11 +7,11 @@ Projeto desenvolvido durante a disciplina de Análise e Projeto de Software.
 <p align="center">
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-fluxo-do-sistema">Fluxo do Sistema</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#-arquitetura-c4-model">Arquitetura (C4 Model)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-arquitetura-c4-model">Arquitetura (C4 Model)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-integrantes">Integrantes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-licenca">Licença</a>
+  <a href="#-licen%C3%A7a">Licença</a>
 </p>
 
 <p align="center">
