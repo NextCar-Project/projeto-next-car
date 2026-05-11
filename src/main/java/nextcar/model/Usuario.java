@@ -1,6 +1,5 @@
 package nextcar.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,4 +24,8 @@ public class Usuario {
     private String login;
     @NotNull(message = "Senha obrigatoria")
     private String senha;
+
+    public  Usuario() {
+    }
+    public Usuario(String nome, String login, String senha) {}
 }
