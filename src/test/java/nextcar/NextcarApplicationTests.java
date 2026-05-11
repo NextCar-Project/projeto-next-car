@@ -7,7 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 class NextcarApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void testCreatNextcarSucess() {
+
+	}
+
+	@Test
+	void testCreatNextcarFail() {
+
 	}
 
 }
