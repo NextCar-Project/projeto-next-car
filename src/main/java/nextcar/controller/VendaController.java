@@ -18,7 +18,7 @@ public class VendaController {
     }
 
     @PostMapping
-    public Venda save(@RequestBody Venda venda) {
+    public Venda save(@RequestBody @Valid Venda venda) {
         return service.save(venda);
     }
 
