@@ -1,5 +1,6 @@
 package nextcar.controller;
 
+import jakarta.validation.Valid;
 import nextcar.model.Veiculo;
 import nextcar.service.VeiculoService;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class VeiculoController {
     }
 
     @PostMapping
-    public Veiculo save(@RequestBody Veiculo veiculo) {
+    public Veiculo save(@RequestBody @Valid Veiculo veiculo) {
         return service.save(veiculo);
     }
 
