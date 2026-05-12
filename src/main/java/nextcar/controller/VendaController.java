@@ -1,5 +1,6 @@
 package nextcar.controller;
 
+import jakarta.validation.Valid;
 import nextcar.model.Venda;
 import nextcar.service.VendaService;
 import org.springframework.web.bind.annotation.*;
