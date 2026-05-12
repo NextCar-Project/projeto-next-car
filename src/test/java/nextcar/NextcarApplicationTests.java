@@ -24,7 +24,7 @@ class NextcarApplicationTests {
 	}
 
 	@Test
-	void testCreatNextcarUsuarioSucess() {
+	void testCreateNextcarUsuarioSucess() {
 		var usuario = new Usuario("test2", "testnext1@gmail.com", "12345Next");
 
 		webTestClient
@@ -40,4 +40,15 @@ class NextcarApplicationTests {
 				.jsonPath("$.senha").exists()
 				.jsonPath("$.senha").isNotEmpty();
 	}
+
+	@Test
+	void testCreateNextcarUsuarioFail() {
+		webTestClient
+				.post()
+				.uri("/usuario")
+				.bodyValue(new Usuario("", "", ""))
+				.exchange()
+				.expectStatus().isBadRequest();
+	}
+
 }
