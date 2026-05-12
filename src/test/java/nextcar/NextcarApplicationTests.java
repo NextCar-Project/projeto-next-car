@@ -1,5 +1,4 @@
 package nextcar;
-
 import nextcar.model.Usuario;
 import nextcar.model.Veiculo;
 import nextcar.model.Venda;
