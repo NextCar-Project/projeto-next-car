@@ -2,6 +2,7 @@ package nextcar.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,13 +20,24 @@ public class Veiculo {
     @NotBlank(message = "Modelo obrigatorio")
     private String modelo;
     @Positive
-    @NotBlank(message = "Ano obrigatorio")
+    @NotNull(message = "Ano obrigatorio")
     private Integer ano;
     @Positive
-    @NotBlank(message = "Valor obrigatorio")
+    @NotNull(message = "Valor obrigatorio")
     private Double preco;
     @NotBlank(message = "Tipo obrigatorio")
     private String tipo;
     @NotBlank(message = "Status obrigatorio")
     private String status;
+
+    public Veiculo() {}
+
+    public Veiculo (String marca, String modelo, Integer ano, Double preco, String tipo, String status) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.preco = preco;
+        this.tipo = tipo;
+        this.status = status;
+    }
 }

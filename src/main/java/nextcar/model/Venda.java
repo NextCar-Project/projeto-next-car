@@ -1,7 +1,6 @@
 package nextcar.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
@@ -21,7 +20,7 @@ public class Venda {
     @NotBlank(message = "Data obrigatoria")
     private LocalDate data;
     @Positive
-    @NotBlank(message = "Valor obrigatorio")
+    @NotNull(message = "Valor obrigatorio")
     private double valorFinal;
     @ManyToOne
     @JoinColumn(name = "veiculo_id")
@@ -29,6 +28,15 @@ public class Venda {
     private Veiculo veiculo;
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    @NotBlank(message = "Usuario obrigatorio")
+    @NotNull(message = "Usuario obrigatorio")
     private Usuario usuario;
+
+    public  Venda() {}
+
+    public Venda(LocalDate data, double valorFinal, Veiculo veiculo, Usuario usuario) {
+        this.data = data;
+        this.valorFinal = valorFinal;
+        this.veiculo = veiculo;
+        this.usuario = usuario;
+    }
 }
