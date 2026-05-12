@@ -1,5 +1,6 @@
 package nextcar.controller;
 
+import jakarta.validation.Valid;
 import nextcar.model.Usuario;
 import nextcar.service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario save (@RequestBody Usuario usuario) {
+    public Usuario save (@RequestBody @Valid Usuario usuario) {
         return service.save(usuario);
     }
 
