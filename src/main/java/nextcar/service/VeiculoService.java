@@ -10,22 +10,22 @@ import java.util.List;
 @Service
 public class VeiculoService {
 
-    private final VeiculoRepository repository;
+    private final VeiculoRepository veiculoRepository;
 
-    public VeiculoService(VeiculoRepository repository) {
-        this.repository = repository;
+    public VeiculoService(VeiculoRepository veiculoRepository) {
+        this.veiculoRepository = veiculoRepository;
     }
 
     public Veiculo save(Veiculo veiculo) {
-        return repository.save(veiculo);
+        return veiculoRepository.save(veiculo);
     }
 
     public List<Veiculo> find() {
-        return repository.findAll();
+        return veiculoRepository.findAll();
     }
 
     public Veiculo update (Veiculo veiculoNovo, Long id) {
-        Veiculo veiculoExiste = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Veiculo não encontrado"));
+        Veiculo veiculoExiste = veiculoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Veiculo não encontrado"));
 
         veiculoExiste.setMarca(veiculoNovo.getMarca());
         veiculoExiste.setModelo(veiculoNovo.getModelo());
@@ -33,11 +33,11 @@ public class VeiculoService {
         veiculoExiste.setPreco(veiculoNovo.getPreco());
         veiculoExiste.setTipo(veiculoNovo.getTipo());
 
-        return repository.save(veiculoExiste);
+        return veiculoRepository.save(veiculoExiste);
     }
 
     public void delete(Long id) {
-        Veiculo veiculo = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Veiculo não encontrado"));
-        repository.delete(veiculo);
+        Veiculo veiculo = veiculoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Veiculo não encontrado"));
+        veiculoRepository.delete(veiculo);
     }
 }

@@ -9,26 +9,26 @@ import java.util.List;
 
 @Service
 public class UsuarioService {
-    private final UsuarioRepository repository;
+    private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder encoder;
 
-    public UsuarioService (UsuarioRepository repository,  PasswordEncoder encoder) {
-        this.repository = repository;
+    public UsuarioService (UsuarioRepository usuarioRepository,  PasswordEncoder encoder) {
+        this.usuarioRepository = usuarioRepository;
         this.encoder = encoder;
     }
 
     public Usuario save (Usuario usuario) {
         String senha = encoder.encode(usuario.getSenha());
         usuario.setSenha(senha);
-       return repository.save(usuario);
+       return usuarioRepository.save(usuario);
     }
 
     public List<Usuario> find() {
-        return repository.findAll();
+        return usuarioRepository.findAll();
     }
 
     public Usuario update (Usuario usuarioNovo, Long id) {
-        Usuario usuarioExiste = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
+        Usuario usuarioExiste = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
 
         usuarioExiste.setNome(usuarioNovo.getNome());
         usuarioExiste.setLogin(usuarioNovo.getLogin());
@@ -37,11 +37,11 @@ public class UsuarioService {
         String senha = encoder.encode(usuarioExiste.getSenha());
         usuarioExiste.setSenha(senha);
 
-        return repository.save(usuarioExiste);
+        return usuarioRepository.save(usuarioExiste);
     }
 
     public void delete (Long id) {
-        Usuario usuario = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
-        repository.delete(usuario);
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
+        usuarioRepository.delete(usuario);
     }
 }

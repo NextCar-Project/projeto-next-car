@@ -13,12 +13,12 @@ import java.util.List;
 
 @Service
 public class VendaService {
-    private final VendaRepository repository;
+    private final VendaRepository vendaRepository;
     private final VeiculoRepository veiculoRepository;
     private final UsuarioRepository usuarioRepository;
 
-    public VendaService(VendaRepository repository, VeiculoRepository veiculoRepository, UsuarioRepository usuarioRepository) {
-        this.repository = repository;
+    public VendaService(VendaRepository vendaRepository, VeiculoRepository veiculoRepository, UsuarioRepository usuarioRepository) {
+        this.vendaRepository = vendaRepository;
         this.veiculoRepository = veiculoRepository;
         this.usuarioRepository = usuarioRepository;
     }
@@ -29,25 +29,25 @@ public class VendaService {
 
         venda.setVeiculo(veiculo);
         venda.setUsuario(usuario);
-        return repository.save(venda);
+        return vendaRepository.save(venda);
     }
 
     public List<Venda> find(){
-        return repository.findAll();
+        return vendaRepository.findAll();
     }
 
     public Venda update(Venda vendaNova, Long id) {
-        Venda vendaExiste = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Venda não encontrada"));
+        Venda vendaExiste = vendaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Venda não encontrada"));
 
         vendaExiste.setData(vendaNova.getData());
         vendaExiste.setValorFinal(vendaNova.getValorFinal());
         vendaExiste.setVeiculo(vendaNova.getVeiculo());
 
-        return repository.save(vendaExiste);
+        return vendaRepository.save(vendaExiste);
     }
 
     public void delete(Long id){
-        Venda venda = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Venda não encontrada"));
-        repository.delete(venda);
+        Venda venda = vendaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Venda não encontrada"));
+        vendaRepository.delete(venda);
     }
 }
