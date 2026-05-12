@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,12 +17,12 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "Nome obrigatorio")
+    @NotBlank(message = "Nome obrigatorio")
     private String nome;
     @Email
-    @NotNull(message = "Login obrigatorio")
+    @NotBlank(message = "Login obrigatorio")
     private String login;
-    @NotNull(message = "Senha obrigatoria")
+    @NotBlank(message = "Senha obrigatoria")
     private String senha;
 
     public  Usuario() {

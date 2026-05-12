@@ -1,6 +1,7 @@
 package nextcar.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
@@ -17,17 +18,17 @@ public class Venda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Data obrigatoria")
+    @NotBlank(message = "Data obrigatoria")
     private LocalDate data;
     @Positive
-    @NotNull(message = "Valor obrigatorio")
+    @NotBlank(message = "Valor obrigatorio")
     private double valorFinal;
     @ManyToOne
     @JoinColumn(name = "veiculo_id")
-    @NotNull(message = "Veiculo obrigatorio")
+    @NotBlank(message = "Veiculo obrigatorio")
     private Veiculo veiculo;
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    @NotNull(message = "Usuario obrigatorio")
+    @NotBlank(message = "Usuario obrigatorio")
     private Usuario usuario;
 }
