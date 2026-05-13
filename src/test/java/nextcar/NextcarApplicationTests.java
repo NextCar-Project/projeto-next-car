@@ -59,7 +59,7 @@ class NextcarApplicationTests {
 
 	@Test
 	void testCreateNextcarVeiculoSucess() {
-		var veiculo = new Veiculo("test2", "onix", 2025, 150.000, "Sedan", "Vendido");
+		var veiculo = new Veiculo("test2", "onix", 2025, 150.000, "Sedan", "Vendido", "normal");
 
 		webTestClient
 				.post()
@@ -82,7 +82,7 @@ class NextcarApplicationTests {
 		webTestClient
 				.post()
 				.uri("/veiculos")
-				.bodyValue(new Veiculo("", "", 0, 0.0, "Sedan", "Vendido"))
+				.bodyValue(new Veiculo("", "", 0, 0.0, "Sedan", "Vendido", "normal"))
 				.exchange()
 				.expectStatus().isBadRequest();
 	}
@@ -95,7 +95,7 @@ class NextcarApplicationTests {
 
 	@Test
 	void testCreateNextcarVendaSucess() {
-		var veiculo = veiculoRepository.save(new Veiculo("Ford", "Fusion", 2019, 140000.0, "Sedan", "disponivel"));
+		var veiculo = veiculoRepository.save(new Veiculo("Ford", "Fusion", 2019, 140000.0, "Sedan", "disponivel", "normal"));
 		var usuario = usuarioRepository.save(new Usuario("test5", "testnext5@gmail.com", "12345Next"));
 
 		Venda venda = new Venda(LocalDate.now(), 150000.0, veiculo, usuario);
@@ -115,6 +115,7 @@ class NextcarApplicationTests {
 				"",
 				0,
 				0.0,
+				"",
 				"",
 				""
 		);

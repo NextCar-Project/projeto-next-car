@@ -38,7 +38,7 @@ public class VeiculoService {
 
         PrecoStrategy strategy = strategies.get(veiculoNovo.getTipoPreco());
 
-        if (strategy == null) throw new EntityNotFoundException("Preço invalido");
+        if (strategy == null) throw new RuntimeException("Preço invalido");
 
         double precoFinal = strategy.calcularPreco(veiculoExiste.getPreco());
 

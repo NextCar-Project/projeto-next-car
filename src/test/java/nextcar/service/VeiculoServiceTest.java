@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,6 +22,12 @@ class VeiculoServiceTest {
 
     @Mock
     private VeiculoRepository veiculoRepository;
+
+    @Mock
+    private Map<String, PrecoStrategy> strategies;
+
+    @Mock
+    private PrecoStrategy precoStrategy;
 
     @InjectMocks
     private VeiculoService veiculoService;
@@ -37,6 +44,7 @@ class VeiculoServiceTest {
         veiculo.setAno(2020);
         veiculo.setPreco(80000.0);
         veiculo.setTipo("Sedan");
+        veiculo.setTipoPreco("normal");
     }
 
     @Test
@@ -74,11 +82,22 @@ class VeiculoServiceTest {
         veiculoNovo.setAno(2022);
         veiculoNovo.setPreco(120000.0);
         veiculoNovo.setTipo("Sedan");
+        veiculoNovo.setTipoPreco("normal");
 
-        when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
-        when(veiculoRepository.save(any(Veiculo.class))).thenReturn(veiculo);
+        when(veiculoRepository.findById(1L))
+                .thenReturn(Optional.of(veiculo));
 
-        Veiculo resultado = veiculoService.update(veiculoNovo, 1L);
+        when(veiculoRepository.save(any(Veiculo.class)))
+                .thenReturn(veiculo);
+
+        when(strategies.get("normal"))
+                .thenReturn(precoStrategy);
+
+        when(precoStrategy.calcularPreco(anyDouble()))
+                .thenReturn(120000.0);
+
+        Veiculo resultado =
+                veiculoService.update(veiculoNovo, 1L);
 
         assertNotNull(resultado);
         assertEquals("Honda", resultado.getMarca());
@@ -86,6 +105,7 @@ class VeiculoServiceTest {
         assertEquals(2022, resultado.getAno());
         assertEquals(120000.0, resultado.getPreco());
         assertEquals("Sedan", resultado.getTipo());
+        assertEquals("normal", resultado.getTipoPreco());
 
         verify(veiculoRepository, times(1)).findById(1L);
         verify(veiculoRepository, times(1)).save(veiculo);
