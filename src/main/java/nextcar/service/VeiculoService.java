@@ -4,16 +4,18 @@ import jakarta.persistence.EntityNotFoundException;
 import nextcar.model.Veiculo;
 import nextcar.repository.VeiculoRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class VeiculoService {
 
     private final VeiculoRepository veiculoRepository;
+    private final Map<String, PrecoStrategy> strategies;
 
-    public VeiculoService(VeiculoRepository veiculoRepository) {
+    public VeiculoService(VeiculoRepository veiculoRepository, Map<String, PrecoStrategy> strategies) {
         this.veiculoRepository = veiculoRepository;
+        this.strategies = strategies;
     }
 
     public Veiculo save(Veiculo veiculo) {
@@ -32,6 +34,15 @@ public class VeiculoService {
         veiculoExiste.setAno(veiculoNovo.getAno());
         veiculoExiste.setPreco(veiculoNovo.getPreco());
         veiculoExiste.setTipo(veiculoNovo.getTipo());
+        veiculoExiste.setTipoPreco(veiculoNovo.getTipoPreco());
+
+        PrecoStrategy strategy = strategies.get(veiculoNovo.getTipoPreco());
+
+        if (strategy == null) throw new EntityNotFoundException("Preço invalido");
+
+        double precoFinal = strategy.calcularPreco(veiculoExiste.getPreco());
+
+        veiculoExiste.setPreco(precoFinal);
 
         return veiculoRepository.save(veiculoExiste);
     }

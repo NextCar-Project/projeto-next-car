@@ -29,15 +29,18 @@ public class Veiculo {
     private String tipo;
     @NotBlank(message = "Status obrigatorio")
     private String status;
+    @NotBlank(message = "Tipo de preco obrigatorio")
+    private String tipoPreco;
 
     public Veiculo() {}
 
-    public Veiculo (String marca, String modelo, Integer ano, Double preco, String tipo, String status) {
+    public Veiculo (String marca, String modelo, Integer ano, Double preco, String tipo, String status,  String tipoPreco) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.preco = preco;
         this.tipo = tipo;
         this.status = status;
+        this.tipoPreco = tipoPreco;
     }
 }
