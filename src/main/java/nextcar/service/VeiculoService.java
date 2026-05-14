@@ -32,7 +32,6 @@ public class VeiculoService {
         veiculoExiste.setMarca(veiculoNovo.getMarca());
         veiculoExiste.setModelo(veiculoNovo.getModelo());
         veiculoExiste.setAno(veiculoNovo.getAno());
-        veiculoExiste.setPreco(veiculoNovo.getPreco());
         veiculoExiste.setTipo(veiculoNovo.getTipo());
         veiculoExiste.setTipoPreco(veiculoNovo.getTipoPreco());
 
