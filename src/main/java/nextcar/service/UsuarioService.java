@@ -1,47 +1,51 @@
 package nextcar.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import nextcar.dto.UsuarioRequestDTO;
+import nextcar.dto.UsuarioResponseDTO;
 import nextcar.model.Usuario;
 import nextcar.repository.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
+
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder encoder;
 
-    public UsuarioService (UsuarioRepository usuarioRepository,  PasswordEncoder encoder) {
+    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder encoder) {
         this.usuarioRepository = usuarioRepository;
         this.encoder = encoder;
     }
 
-    public Usuario save (Usuario usuario) {
-        String senha = encoder.encode(usuario.getSenha());
-        usuario.setSenha(senha);
-       return usuarioRepository.save(usuario);
+    public UsuarioResponseDTO save(UsuarioRequestDTO dto) {
+        Usuario usuario = new Usuario(dto.getNome(), dto.getLogin(), encoder.encode(dto.getSenha()));
+        return new UsuarioResponseDTO(usuarioRepository.save(usuario));
     }
 
-    public List<Usuario> find() {
-        return usuarioRepository.findAll();
+    public List<UsuarioResponseDTO> find() {
+        return usuarioRepository.findAll()
+                .stream()
+                .map(UsuarioResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
-    public Usuario update (Usuario usuarioNovo, Long id) {
-        Usuario usuarioExiste = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
-
-        usuarioExiste.setNome(usuarioNovo.getNome());
-        usuarioExiste.setLogin(usuarioNovo.getLogin());
-        usuarioExiste.setSenha(usuarioNovo.getSenha());
-
-        String senha = encoder.encode(usuarioExiste.getSenha());
-        usuarioExiste.setSenha(senha);
-
-        return usuarioRepository.save(usuarioExiste);
+    public UsuarioResponseDTO update(UsuarioRequestDTO dto, Long id) {
+        Usuario existe = buscarPorId(id);
+        existe.setNome(dto.getNome());
+        existe.setLogin(dto.getLogin());
+        existe.setSenha(encoder.encode(dto.getSenha()));
+        return new UsuarioResponseDTO(usuarioRepository.save(existe));
     }
 
-    public void delete (Long id) {
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
-        usuarioRepository.delete(usuario);
+    public void delete(Long id) {
+        usuarioRepository.delete(buscarPorId(id));
+    }
+
+    public Usuario buscarPorId(Long id) {
+        return usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario nao encontrado: " + id));
     }
 }
