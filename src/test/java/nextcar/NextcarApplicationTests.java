@@ -1,15 +1,18 @@
 package nextcar;
-import nextcar.model.Usuario;
+
+import nextcar.dto.UsuarioRequestDTO;
+import nextcar.dto.VendaRequestDTO;
 import nextcar.model.Veiculo;
-import nextcar.model.Venda;
 import nextcar.repository.UsuarioRepository;
 import nextcar.repository.VeiculoRepository;
+import nextcar.repository.VendaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.web.reactive.server.WebTestClient;
+
 import java.time.LocalDate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -20,17 +23,56 @@ class NextcarApplicationTests {
 
 	private WebTestClient webTestClient;
 
+	@Autowired
+	private VeiculoRepository veiculoRepository;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private VendaRepository vendaRepository;
+
 	@BeforeEach
 	void setup() {
+
 		webTestClient = WebTestClient
 				.bindToServer()
 				.baseUrl("http://localhost:" + port)
 				.build();
+
+		vendaRepository.deleteAll();
+		veiculoRepository.deleteAll();
+		usuarioRepository.deleteAll();
 	}
 
 	@Test
-	void testCreateNextcarUsuarioSucess() {
-		var usuario = new Usuario("test2", "testnext1@gmail.com", "12345Next");
+	void testCreateNextcarUsuarioSuccess() {
+
+		UsuarioRequestDTO usuario = new UsuarioRequestDTO(
+				"Emerson",
+				"emerson@test.com",
+				"123"
+		);
+
+		webTestClient
+				.post()
+				.uri("/usuarios")
+				.bodyValue(usuario)
+				.exchange()
+				.expectStatus().is2xxSuccessful()
+				.expectBody()
+				.jsonPath("$.nome").isEqualTo(usuario.getNome())
+				.jsonPath("$.login").isEqualTo(usuario.getLogin());
+	}
+
+	@Test
+	void testCreateNextcarUsuarioFail() {
+
+		UsuarioRequestDTO usuario = new UsuarioRequestDTO(
+				"",
+				"",
+				""
+		);
 
 		webTestClient
 				.post()
@@ -38,28 +80,21 @@ class NextcarApplicationTests {
 				.bodyValue(usuario)
 				.exchange()
 				.expectStatus()
-				.isOk()
-				.expectBody()
-				.jsonPath("$.nome").isEqualTo(usuario.getNome())
-				.jsonPath("$.login").isEqualTo(usuario.getLogin())
-				.jsonPath("$.senha").exists()
-				.jsonPath("$.senha").isNotEmpty();
+				.isBadRequest();
 	}
 
 	@Test
-	void testCreateNextcarUsuarioFail() {
-		webTestClient
-				.post()
-				.uri("/usuarios")
-				.bodyValue(new Usuario("", "", ""))
-				.exchange()
-				.expectStatus().isBadRequest();
-	}
+	void testCreateNextcarVeiculoSuccess() {
 
-
-	@Test
-	void testCreateNextcarVeiculoSucess() {
-		var veiculo = new Veiculo("test2", "onix", 2025, 150.000, "Sedan", "Vendido", "normal");
+		Veiculo veiculo = new Veiculo(
+				"Toyota",
+				"Corolla",
+				2020,
+				80000.0,
+				"Sedan",
+				"disponivel",
+				"normal"
+		);
 
 		webTestClient
 				.post()
@@ -67,49 +102,20 @@ class NextcarApplicationTests {
 				.bodyValue(veiculo)
 				.exchange()
 				.expectStatus()
-				.isOk()
+				.is2xxSuccessful()
 				.expectBody()
 				.jsonPath("$.marca").isEqualTo(veiculo.getMarca())
 				.jsonPath("$.modelo").isEqualTo(veiculo.getModelo())
 				.jsonPath("$.ano").isEqualTo(veiculo.getAno())
 				.jsonPath("$.preco").isEqualTo(veiculo.getPreco())
 				.jsonPath("$.tipo").isEqualTo(veiculo.getTipo())
-				.jsonPath("$.status").isEqualTo(veiculo.getStatus());
+				.jsonPath("$.status").isEqualTo(veiculo.getStatus())
+				.jsonPath("$.tipoPreco").isEqualTo(veiculo.getTipoPreco());
 	}
 
 	@Test
 	void testCreateNextcarVeiculoFail() {
-		webTestClient
-				.post()
-				.uri("/veiculos")
-				.bodyValue(new Veiculo("", "", 0, 0.0, "Sedan", "Vendido", "normal"))
-				.exchange()
-				.expectStatus().isBadRequest();
-	}
 
-	@Autowired
-	private VeiculoRepository veiculoRepository;
-
-	@Autowired
-	private UsuarioRepository usuarioRepository;
-
-	@Test
-	void testCreateNextcarVendaSucess() {
-		var veiculo = veiculoRepository.save(new Veiculo("Ford", "Fusion", 2019, 140000.0, "Sedan", "disponivel", "normal"));
-		var usuario = usuarioRepository.save(new Usuario("test5", "testnext5@gmail.com", "12345Next"));
-
-		Venda venda = new Venda(LocalDate.now(), 150000.0, veiculo, usuario);
-
-		webTestClient
-				.post()
-				.uri("/vendas")
-				.bodyValue(venda)
-				.exchange()
-				.expectStatus().isOk();
-	}
-
-	@Test
-	void testCreateNextcarVendaFail() {
 		Veiculo veiculo = new Veiculo(
 				"",
 				"",
@@ -120,25 +126,73 @@ class NextcarApplicationTests {
 				""
 		);
 
-		Usuario usuario = new Usuario(
-				"",
-				"",
-				""
+		webTestClient
+				.post()
+				.uri("/veiculos")
+				.bodyValue(veiculo)
+				.exchange()
+				.expectStatus()
+				.isBadRequest();
+	}
+
+	@Test
+	void testCreateNextcarVendaSuccess() {
+
+		Veiculo veiculo = veiculoRepository.save(
+				new Veiculo(
+						"Honda",
+						"Civic",
+						2022,
+						120000.0,
+						"Sedan",
+						"disponivel",
+						"normal"
+				)
 		);
+
+		var usuario = usuarioRepository.save(
+				new nextcar.model.Usuario(
+						"Emerson",
+						"emerson@test.com",
+						"123"
+				)
+		);
+
+		VendaRequestDTO venda = new VendaRequestDTO();
+
+		venda.setData(LocalDate.now());
+		venda.setValorFinal(120000.0);
+		venda.setVeiculoId(veiculo.getId());
+		venda.setUsuarioId(usuario.getId());
 
 		webTestClient
 				.post()
 				.uri("/vendas")
-				.bodyValue(
-						new Venda(
-								LocalDate.of(2026, 5, 11),
-								0.0,
-								veiculo,
-								usuario
-						)
-				)
+				.bodyValue(venda)
 				.exchange()
 				.expectStatus()
-				.isBadRequest();
+				.is2xxSuccessful()
+				.expectBody()
+				.jsonPath("$.valorFinal").isEqualTo(120000.0)
+				.jsonPath("$.usuarioNome").isEqualTo("Emerson");
+	}
+
+	@Test
+	void testCreateNextcarVendaFail() {
+
+		VendaRequestDTO venda = new VendaRequestDTO();
+
+		venda.setData(LocalDate.now());
+		venda.setValorFinal(0.0);
+		venda.setVeiculoId(999L);
+		venda.setUsuarioId(999L);
+
+		webTestClient
+				.post()
+				.uri("/vendas")
+				.bodyValue(venda)
+				.exchange()
+				.expectStatus()
+				.is4xxClientError();
 	}
 }
