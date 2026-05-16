@@ -10,12 +10,16 @@ import java.util.List;
 @Service
 public class VendaService {
     private final VendaRepository vendaRepository;
+    private final PrecoStrategyFactory precoStrategyFactory;
 
-    public VendaService(VendaRepository vendaRepository) {
+    public VendaService(VendaRepository vendaRepository, PrecoStrategyFactory precoStrategyFactory) {
         this.vendaRepository = vendaRepository;
+        this.precoStrategyFactory = precoStrategyFactory;
     }
 
     public Venda save(Venda venda) {
+        double precoFinal = precoStrategyFactory.getStrategy(venda.getVeiculo().getTipoPreco()).calcularPreco(venda.getVeiculo().getPreco());
+        venda.setValorFinal(precoFinal);
         return vendaRepository.save(venda);
     }
 
