@@ -15,8 +15,8 @@ public class UsuarioResponseDTO {
     public UsuarioResponseDTO() {}
 
     public UsuarioResponseDTO(Usuario usuario) {
-        this.id    = usuario.getId();
-        this.nome  = usuario.getNome();
+        this.id = usuario.getId();
+        this.nome = usuario.getNome();
         this.login = usuario.getLogin();
     }
 }
