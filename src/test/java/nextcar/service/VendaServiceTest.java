@@ -28,6 +28,13 @@ class VendaServiceTest {
     @InjectMocks
     private VendaService vendaService;
 
+    @Mock
+    private PrecoStrategyFactory precoStrategyFactory;
+
+    @Mock
+    private PrecoStrategy precoStrategy;
+
+
     private Venda venda;
     private Veiculo veiculo;
     private Usuario usuario;
@@ -38,6 +45,8 @@ class VendaServiceTest {
         veiculo.setId(1L);
         veiculo.setMarca("Toyota");
         veiculo.setModelo("Corolla");
+        veiculo.setPreco(80000.0);
+        veiculo.setTipoPreco("normal");
 
         usuario = new Usuario();
         usuario.setId(1L);
@@ -55,12 +64,21 @@ class VendaServiceTest {
 
     @Test
     void testSaveVenda() {
-        when(vendaRepository.save(venda)).thenReturn(venda);
+
+        when(precoStrategyFactory.getStrategy("normal"))
+                .thenReturn(precoStrategy);
+
+        when(precoStrategy.calcularPreco(80000.0))
+                .thenReturn(80000.0);
+
+        when(vendaRepository.save(venda))
+                .thenReturn(venda);
 
         Venda resultado = vendaService.save(venda);
 
         assertNotNull(resultado);
         assertEquals(80000.0, resultado.getValorFinal());
+
         verify(vendaRepository).save(venda);
     }
 
