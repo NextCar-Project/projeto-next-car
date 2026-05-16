@@ -1,39 +1,41 @@
 package nextcar.controller;
 
 import jakarta.validation.Valid;
-import nextcar.model.Usuario;
+import nextcar.dto.UsuarioRequestDTO;
+import nextcar.dto.UsuarioResponseDTO;
 import nextcar.service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
 @CrossOrigin("*")
 public class UsuarioController {
-    private final UsuarioService service;
 
-    public UsuarioController (UsuarioService service) {
-        this.service = service;
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
     @PostMapping
-    public Usuario save (@RequestBody @Valid Usuario usuario) {
-        return service.save(usuario);
+    public UsuarioResponseDTO save(@RequestBody @Valid UsuarioRequestDTO dto) {
+        return usuarioService.save(dto);
     }
 
     @GetMapping
-    public List<Usuario> find () {
-        return service.find();
+    public List<UsuarioResponseDTO> find() {
+        return usuarioService.find();
     }
 
     @PutMapping("{id}")
-    public Usuario update (@RequestBody Usuario usuario, @PathVariable Long id) {
-        return service.update(usuario, id);
+    public UsuarioResponseDTO update(@RequestBody @Valid UsuarioRequestDTO dto,
+                                     @PathVariable Long id) {
+        return usuarioService.update(dto, id);
     }
 
     @DeleteMapping("{id}")
-    public void delete (@PathVariable Long id) {
-        service.delete(id);
+    public void delete(@PathVariable Long id) {
+        usuarioService.delete(id);
     }
 }
