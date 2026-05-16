@@ -1,8 +1,9 @@
 package nextcar.controller;
 
 import jakarta.validation.Valid;
-import nextcar.model.Venda;
-import nextcar.service.VendaService;
+import nextcar.dto.VendaRequestDTO;
+import nextcar.dto.VendaResponseDTO;
+import nextcar.service.VendaFacade;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,29 +12,30 @@ import java.util.List;
 @RequestMapping("/vendas")
 @CrossOrigin("*")
 public class VendaController {
-    private final VendaService service;
 
-    public VendaController(VendaService service) {
-        this.service = service;
+    private final VendaFacade facade;
+
+    public VendaController(VendaFacade facade) {
+        this.facade = facade;
     }
 
     @PostMapping
-    public Venda save(@RequestBody @Valid Venda venda) {
-        return service.save(venda);
+    public VendaResponseDTO save(@RequestBody @Valid VendaRequestDTO dto) {
+        return facade.registrarVenda(dto);
     }
 
     @GetMapping
-    public List<Venda> find() {
-        return service.find();
+    public List<VendaResponseDTO> find() {
+        return facade.listarVendas();
     }
 
     @PutMapping("{id}")
-    public Venda update(@RequestBody Venda venda, @PathVariable Long id) {
-        return service.update(venda, id);
+    public VendaResponseDTO update(@RequestBody @Valid VendaRequestDTO dto, @PathVariable Long id) {
+        return facade.atualizarVenda(dto, id);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
-        service.delete(id);
+        facade.cancelarVenda(id);
     }
 }
