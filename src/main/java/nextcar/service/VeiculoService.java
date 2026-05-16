@@ -29,7 +29,7 @@ public class VeiculoService {
 
         if (!veiculoNovo.getTipoPreco().equalsIgnoreCase("normal") && !veiculoNovo.getTipoPreco().equalsIgnoreCase("desconto")) {
 
-            throw new TipoPrecoInvalidoException("Tipo de preco invalido");
+            throw new TipoPrecoInvalidoException("");
         }
 
         existe.setMarca(veiculoNovo.getMarca());
