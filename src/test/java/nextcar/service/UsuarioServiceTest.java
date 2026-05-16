@@ -1,6 +1,8 @@
 package nextcar.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import nextcar.dto.UsuarioRequestDTO;
+import nextcar.dto.UsuarioResponseDTO;
 import nextcar.model.Usuario;
 import nextcar.repository.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,96 +32,97 @@ class UsuarioServiceTest {
     private UsuarioService usuarioService;
 
     private Usuario usuario;
+    private UsuarioRequestDTO requestDTO;
 
     @BeforeEach
     void setUp() {
         usuario = new Usuario();
         usuario.setId(1L);
         usuario.setNome("Emerson");
-        usuario.setLogin("emerson");
-        usuario.setSenha("123");
+        usuario.setLogin("emerson@test.com");
+        usuario.setSenha("senhaCriptografada");
+
+        requestDTO = new UsuarioRequestDTO("Emerson", "emerson@test.com", "123");
     }
 
     @Test
     void testSaveUsuario() {
-
         when(encoder.encode("123")).thenReturn("senhaCriptografada");
-        when(usuarioRepository.save(usuario)).thenReturn(usuario);
+        when(usuarioRepository.save(any(Usuario.class))).thenReturn(usuario);
 
-        Usuario resultado = usuarioService.save(usuario);
+        UsuarioResponseDTO resultado = usuarioService.save(requestDTO);
 
         assertNotNull(resultado);
-        assertEquals("senhaCriptografada", resultado.getSenha());
-
-        verify(encoder, times(1)).encode("123");
-        verify(usuarioRepository, times(1)).save(usuario);
+        assertEquals("Emerson", resultado.getNome());
+        assertEquals("emerson@test.com", resultado.getLogin());
+        verify(encoder).encode("123");
+        verify(usuarioRepository).save(any(Usuario.class));
     }
 
     @Test
     void testFindUsuarios() {
-
         when(usuarioRepository.findAll()).thenReturn(List.of(usuario));
 
-        List<Usuario> usuarios = usuarioService.find();
+        List<UsuarioResponseDTO> usuarios = usuarioService.find();
 
         assertEquals(1, usuarios.size());
-
-        verify(usuarioRepository, times(1)).findAll();
+        assertEquals("Emerson", usuarios.get(0).getNome());
+        verify(usuarioRepository).findAll();
     }
 
     @Test
     void testUpdateUsuario() {
-
-        Usuario usuarioNovo = new Usuario();
-        usuarioNovo.setNome("Novo Nome");
-        usuarioNovo.setLogin("novoLogin");
-        usuarioNovo.setSenha("456");
+        UsuarioRequestDTO novoDTO = new UsuarioRequestDTO("Novo Nome", "novo@test.com", "456");
 
         when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuario));
         when(encoder.encode("456")).thenReturn("novaSenhaCriptografada");
         when(usuarioRepository.save(any(Usuario.class))).thenReturn(usuario);
 
-        Usuario resultado = usuarioService.update(usuarioNovo, 1L);
+        UsuarioResponseDTO resultado = usuarioService.update(novoDTO, 1L);
 
         assertNotNull(resultado);
-        assertEquals("Novo Nome", resultado.getNome());
-        assertEquals("novoLogin", resultado.getLogin());
-        assertEquals("novaSenhaCriptografada", resultado.getSenha());
-
-        verify(usuarioRepository, times(1)).findById(1L);
-        verify(usuarioRepository, times(1)).save(usuario);
+        verify(usuarioRepository).findById(1L);
+        verify(encoder).encode("456");
+        verify(usuarioRepository).save(usuario);
     }
 
     @Test
     void testUpdateUsuarioNotFound() {
-
         when(usuarioRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class,
-                () -> usuarioService.update(usuario, 1L));
+                () -> usuarioService.update(requestDTO, 1L));
 
-        verify(usuarioRepository, times(1)).findById(1L);
+        verify(usuarioRepository).findById(1L);
     }
 
     @Test
     void testDeleteUsuario() {
-
         when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuario));
 
         usuarioService.delete(1L);
 
-        verify(usuarioRepository, times(1)).findById(1L);
-        verify(usuarioRepository, times(1)).delete(usuario);
+        verify(usuarioRepository).findById(1L);
+        verify(usuarioRepository).delete(usuario);
     }
 
     @Test
     void testDeleteUsuarioNotFound() {
-
         when(usuarioRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class,
                 () -> usuarioService.delete(1L));
 
-        verify(usuarioRepository, times(1)).findById(1L);
+        verify(usuarioRepository).findById(1L);
+    }
+
+    @Test
+    void testBuscarPorIdNotFound() {
+        when(usuarioRepository.findById(99L)).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class,
+                () -> usuarioService.buscarPorId(99L));
+
+        verify(usuarioRepository).findById(99L);
     }
 }
