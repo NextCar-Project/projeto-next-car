@@ -20,6 +20,11 @@ public class VendaService {
     public Venda save(Venda venda) {
         double precoFinal = precoStrategyFactory.getStrategy(venda.getVeiculo().getTipoPreco()).calcularPreco(venda.getVeiculo().getPreco());
         venda.setValorFinal(precoFinal);
+
+        if (venda.getVeiculo().getStatus().equalsIgnoreCase("disponivel")) {
+            venda.getVeiculo().setStatus("vendido");
+        }
+        
         return vendaRepository.save(venda);
     }
 
