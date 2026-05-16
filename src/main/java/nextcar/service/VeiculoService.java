@@ -1,6 +1,7 @@
 package nextcar.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import nextcar.exception.TipoPrecoInvalidoException;
 import nextcar.model.Veiculo;
 import nextcar.repository.VeiculoRepository;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,9 @@ import java.util.List;
 public class VeiculoService {
 
     private final VeiculoRepository veiculoRepository;
-    private final PrecoStrategyFactory strategyFactory;
 
-    public VeiculoService(VeiculoRepository veiculoRepository, PrecoStrategyFactory strategyFactory) {
+    public VeiculoService(VeiculoRepository veiculoRepository) {
         this.veiculoRepository = veiculoRepository;
-        this.strategyFactory = strategyFactory;
     }
 
     public Veiculo save(Veiculo veiculo) {
@@ -28,16 +27,17 @@ public class VeiculoService {
     public Veiculo update(Veiculo veiculoNovo, Long id) {
         Veiculo existe = buscarPorId(id);
 
+        if (!veiculoNovo.getTipoPreco().equalsIgnoreCase("normal") && !veiculoNovo.getTipoPreco().equalsIgnoreCase("desconto")) {
+
+            throw new TipoPrecoInvalidoException("Tipo de preco invalido");
+        }
+
         existe.setMarca(veiculoNovo.getMarca());
         existe.setModelo(veiculoNovo.getModelo());
         existe.setAno(veiculoNovo.getAno());
         existe.setTipo(veiculoNovo.getTipo());
         existe.setStatus(veiculoNovo.getStatus());
         existe.setTipoPreco(veiculoNovo.getTipoPreco());
-
-        double precoFinal = strategyFactory.getStrategy(veiculoNovo.getTipoPreco()).calcularPreco(veiculoNovo.getPreco());
-
-        existe.setPreco(precoFinal);
         return veiculoRepository.save(existe);
     }
 
