@@ -21,12 +21,12 @@ public class VendaResponseDTO {
     public VendaResponseDTO() {}
 
     public VendaResponseDTO(Venda venda) {
-        this.id               = venda.getId();
-        this.data             = venda.getData();
-        this.valorFinal       = venda.getValorFinal();
-        this.veiculoId        = venda.getVeiculo().getId();
+        this.id  = venda.getId();
+        this.data = venda.getData();
+        this.valorFinal = venda.getValorFinal();
+        this.veiculoId = venda.getVeiculo().getId();
         this.veiculoDescricao = venda.getVeiculo().getMarca() + " " + venda.getVeiculo().getModelo();
-        this.usuarioId        = venda.getUsuario().getId();
-        this.usuarioNome      = venda.getUsuario().getNome();
+        this.usuarioId = venda.getUsuario().getId();
+        this.usuarioNome = venda.getUsuario().getNome();
     }
 }
