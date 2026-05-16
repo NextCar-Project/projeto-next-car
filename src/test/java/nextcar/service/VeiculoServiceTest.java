@@ -23,12 +23,6 @@ class VeiculoServiceTest {
     @Mock
     private VeiculoRepository veiculoRepository;
 
-    @Mock
-    private PrecoStrategyFactory strategyFactory;
-
-    @Mock
-    private PrecoStrategy precoStrategy;
-
     @InjectMocks
     private VeiculoService veiculoService;
 
@@ -76,14 +70,10 @@ class VeiculoServiceTest {
 
         when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
         when(veiculoRepository.save(any(Veiculo.class))).thenReturn(veiculo);
-        when(strategyFactory.getStrategy("normal")).thenReturn(precoStrategy);
-        when(precoStrategy.calcularPreco(anyDouble())).thenReturn(120000.0);
 
         Veiculo resultado = veiculoService.update(novo, 1L);
 
         assertNotNull(resultado);
-        verify(strategyFactory).getStrategy("normal");
-        verify(precoStrategy).calcularPreco(120000.0);
         verify(veiculoRepository).save(veiculo);
     }
 
@@ -96,6 +86,7 @@ class VeiculoServiceTest {
 
     @Test
     void testUpdateVeiculoTipoPrecoInvalido() {
+
         Veiculo novo = new Veiculo();
         novo.setMarca("Honda");
         novo.setModelo("Civic");
@@ -105,9 +96,11 @@ class VeiculoServiceTest {
         novo.setStatus("disponivel");
         novo.setTipoPreco("invalido");
 
-        when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
-        when(strategyFactory.getStrategy("invalido"))
-                .thenThrow(new TipoPrecoInvalidoException("invalido"));
+        Veiculo existente = new Veiculo();
+        existente.setId(1L);
+
+        when(veiculoRepository.findById(1L))
+                .thenReturn(Optional.of(existente));
 
         assertThrows(TipoPrecoInvalidoException.class,
                 () -> veiculoService.update(novo, 1L));
