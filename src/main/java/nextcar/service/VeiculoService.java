@@ -35,6 +35,7 @@ public class VeiculoService {
         existe.setMarca(veiculoNovo.getMarca());
         existe.setModelo(veiculoNovo.getModelo());
         existe.setAno(veiculoNovo.getAno());
+        existe.setPreco(veiculoNovo.getPreco());
         existe.setTipo(veiculoNovo.getTipo());
         existe.setStatus(veiculoNovo.getStatus());
         existe.setTipoPreco(veiculoNovo.getTipoPreco());
