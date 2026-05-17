@@ -22,6 +22,12 @@ class VeiculoServiceTest {
 
     @Mock
     private VeiculoRepository veiculoRepository;
+    
+    @Mock
+    private PrecoStrategyFactory strategyFactory;
+
+    @Mock
+    private PrecoStrategy precoStrategy;
 
     @InjectMocks
     private VeiculoService veiculoService;
@@ -44,7 +50,9 @@ class VeiculoServiceTest {
     @Test
     void testSaveVeiculo() {
         when(veiculoRepository.save(veiculo)).thenReturn(veiculo);
+
         Veiculo resultado = veiculoService.save(veiculo);
+
         assertNotNull(resultado);
         assertEquals("Toyota", resultado.getMarca());
         verify(veiculoRepository).save(veiculo);
@@ -53,6 +61,7 @@ class VeiculoServiceTest {
     @Test
     void testFindVeiculos() {
         when(veiculoRepository.findAll()).thenReturn(List.of(veiculo));
+
         assertEquals(1, veiculoService.find().size());
         verify(veiculoRepository).findAll();
     }
@@ -70,23 +79,27 @@ class VeiculoServiceTest {
 
         when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
         when(veiculoRepository.save(any(Veiculo.class))).thenReturn(veiculo);
+        when(strategyFactory.getStrategy("normal")).thenReturn(precoStrategy);
+        when(precoStrategy.calcularPreco(120000.0)).thenReturn(120000.0);
 
         Veiculo resultado = veiculoService.update(novo, 1L);
 
         assertNotNull(resultado);
+        verify(strategyFactory).getStrategy("normal");
+        verify(precoStrategy).calcularPreco(120000.0);
         verify(veiculoRepository).save(veiculo);
     }
 
     @Test
     void testUpdateVeiculoNotFound() {
         when(veiculoRepository.findById(1L)).thenReturn(Optional.empty());
+
         assertThrows(EntityNotFoundException.class,
                 () -> veiculoService.update(veiculo, 1L));
     }
 
     @Test
     void testUpdateVeiculoTipoPrecoInvalido() {
-
         Veiculo novo = new Veiculo();
         novo.setMarca("Honda");
         novo.setModelo("Civic");
@@ -96,26 +109,29 @@ class VeiculoServiceTest {
         novo.setStatus("disponivel");
         novo.setTipoPreco("invalido");
 
-        Veiculo existente = new Veiculo();
-        existente.setId(1L);
-
-        when(veiculoRepository.findById(1L))
-                .thenReturn(Optional.of(existente));
+        when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
+        when(strategyFactory.getStrategy("invalido"))
+                .thenThrow(new TipoPrecoInvalidoException("invalido"));
 
         assertThrows(TipoPrecoInvalidoException.class,
                 () -> veiculoService.update(novo, 1L));
+
+        verify(strategyFactory).getStrategy("invalido");
     }
 
     @Test
     void testDeleteVeiculo() {
         when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
+
         veiculoService.delete(1L);
+
         verify(veiculoRepository).delete(veiculo);
     }
 
     @Test
     void testDeleteVeiculoNotFound() {
         when(veiculoRepository.findById(1L)).thenReturn(Optional.empty());
+
         assertThrows(EntityNotFoundException.class,
                 () -> veiculoService.delete(1L));
     }
@@ -123,6 +139,7 @@ class VeiculoServiceTest {
     @Test
     void testBuscarPorIdNotFound() {
         when(veiculoRepository.findById(99L)).thenReturn(Optional.empty());
+
         assertThrows(EntityNotFoundException.class,
                 () -> veiculoService.buscarPorId(99L));
     }
