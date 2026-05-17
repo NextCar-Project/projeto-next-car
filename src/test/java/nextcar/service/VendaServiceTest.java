@@ -28,13 +28,6 @@ class VendaServiceTest {
     @InjectMocks
     private VendaService vendaService;
 
-    @Mock
-    private PrecoStrategyFactory precoStrategyFactory;
-
-    @Mock
-    private PrecoStrategy precoStrategy;
-
-
     private Venda venda;
     private Veiculo veiculo;
     private Usuario usuario;
@@ -45,8 +38,9 @@ class VendaServiceTest {
         veiculo.setId(1L);
         veiculo.setMarca("Toyota");
         veiculo.setModelo("Corolla");
-        veiculo.setPreco(80000.0);
         veiculo.setTipoPreco("normal");
+        veiculo.setStatus("disponivel");
+        veiculo.setPreco(80000.0);
 
         usuario = new Usuario();
         usuario.setId(1L);
@@ -64,30 +58,17 @@ class VendaServiceTest {
 
     @Test
     void testSaveVenda() {
-
-        when(precoStrategyFactory.getStrategy("normal"))
-                .thenReturn(precoStrategy);
-
-        when(precoStrategy.calcularPreco(80000.0))
-                .thenReturn(80000.0);
-
-        when(vendaRepository.save(venda))
-                .thenReturn(venda);
-
+        when(vendaRepository.save(venda)).thenReturn(venda);
         Venda resultado = vendaService.save(venda);
-
         assertNotNull(resultado);
         assertEquals(80000.0, resultado.getValorFinal());
-
         verify(vendaRepository).save(venda);
     }
 
     @Test
     void testFindVendas() {
         when(vendaRepository.findAll()).thenReturn(List.of(venda));
-
         List<Venda> vendas = vendaService.find();
-
         assertEquals(1, vendas.size());
         verify(vendaRepository).findAll();
     }
@@ -113,19 +94,14 @@ class VendaServiceTest {
     @Test
     void testUpdateVendaNotFound() {
         when(vendaRepository.findById(1L)).thenReturn(Optional.empty());
-
-        assertThrows(EntityNotFoundException.class,
-                () -> vendaService.update(venda, 1L));
-
+        assertThrows(EntityNotFoundException.class, () -> vendaService.update(venda, 1L));
         verify(vendaRepository).findById(1L);
     }
 
     @Test
     void testDeleteVenda() {
         when(vendaRepository.findById(1L)).thenReturn(Optional.of(venda));
-
         vendaService.delete(1L);
-
         verify(vendaRepository).findById(1L);
         verify(vendaRepository).delete(venda);
     }
@@ -133,20 +109,14 @@ class VendaServiceTest {
     @Test
     void testDeleteVendaNotFound() {
         when(vendaRepository.findById(1L)).thenReturn(Optional.empty());
-
-        assertThrows(EntityNotFoundException.class,
-                () -> vendaService.delete(1L));
-
+        assertThrows(EntityNotFoundException.class, () -> vendaService.delete(1L));
         verify(vendaRepository).findById(1L);
     }
 
     @Test
     void testBuscarPorIdNotFound() {
         when(vendaRepository.findById(99L)).thenReturn(Optional.empty());
-
-        assertThrows(EntityNotFoundException.class,
-                () -> vendaService.buscarPorId(99L));
-
+        assertThrows(EntityNotFoundException.class, () -> vendaService.buscarPorId(99L));
         verify(vendaRepository).findById(99L);
     }
 }
