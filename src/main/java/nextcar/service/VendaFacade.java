@@ -6,7 +6,6 @@ import nextcar.model.Usuario;
 import nextcar.model.Veiculo;
 import nextcar.model.Venda;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,21 +15,28 @@ public class VendaFacade {
     private final VendaService vendaService;
     private final VeiculoService veiculoService;
     private final UsuarioService usuarioService;
+    private final PrecoStrategyFactory strategyFactory;
 
-    public VendaFacade(VendaService vendaService, VeiculoService veiculoService, UsuarioService usuarioService) {
+    public VendaFacade(VendaService vendaService, VeiculoService veiculoService, UsuarioService usuarioService, PrecoStrategyFactory strategyFactory) {
         this.vendaService = vendaService;
         this.veiculoService = veiculoService;
         this.usuarioService = usuarioService;
+        this.strategyFactory = strategyFactory;
     }
 
     public VendaResponseDTO registrarVenda(VendaRequestDTO dto) {
         Veiculo veiculo = veiculoService.buscarPorId(dto.getVeiculoId());
         Usuario usuario = usuarioService.buscarPorId(dto.getUsuarioId());
 
-        Venda venda = new Venda(dto.getData(), dto.getValorFinal(), veiculo, usuario);
-        Venda salva = vendaService.save(venda);
+        double precoFinal = strategyFactory.getStrategy(veiculo.getTipoPreco()).calcularPreco(veiculo.getPreco());
 
-        return new VendaResponseDTO(salva);
+        if (veiculo.getStatus().equalsIgnoreCase("disponivel")) {
+            veiculo.setStatus("vendido");
+            veiculoService.save(veiculo);
+        }
+
+        Venda venda = new Venda(dto.getData(), precoFinal, veiculo, usuario);
+        return new VendaResponseDTO(vendaService.save(venda));
     }
 
     public List<VendaResponseDTO> listarVendas() {
@@ -41,15 +47,14 @@ public class VendaFacade {
     }
 
     public VendaResponseDTO atualizarVenda(VendaRequestDTO dto, Long id) {
+        Veiculo veiculo = veiculoService.buscarPorId(dto.getVeiculoId());
+
         Venda vendaNova = new Venda();
         vendaNova.setData(dto.getData());
         vendaNova.setValorFinal(dto.getValorFinal());
-
-        Veiculo veiculo = veiculoService.buscarPorId(dto.getVeiculoId());
         vendaNova.setVeiculo(veiculo);
 
-        Venda atualizada = vendaService.update(vendaNova, id);
-        return new VendaResponseDTO(atualizada);
+        return new VendaResponseDTO(vendaService.update(vendaNova, id));
     }
 
     public void cancelarVenda(Long id) {
