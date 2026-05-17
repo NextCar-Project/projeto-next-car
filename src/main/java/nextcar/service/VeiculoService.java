@@ -1,7 +1,6 @@
 package nextcar.service;
 
 import jakarta.persistence.EntityNotFoundException;
-import nextcar.exception.TipoPrecoInvalidoException;
 import nextcar.model.Veiculo;
 import nextcar.repository.VeiculoRepository;
 import org.springframework.stereotype.Service;
@@ -11,9 +10,11 @@ import java.util.List;
 public class VeiculoService {
 
     private final VeiculoRepository veiculoRepository;
+    private final PrecoStrategyFactory strategyFactory;
 
-    public VeiculoService(VeiculoRepository veiculoRepository) {
+    public VeiculoService(VeiculoRepository veiculoRepository, PrecoStrategyFactory strategyFactory) {
         this.veiculoRepository = veiculoRepository;
+        this.strategyFactory   = strategyFactory;
     }
 
     public Veiculo save(Veiculo veiculo) {
@@ -26,19 +27,16 @@ public class VeiculoService {
 
     public Veiculo update(Veiculo veiculoNovo, Long id) {
         Veiculo existe = buscarPorId(id);
-
-        if (!veiculoNovo.getTipoPreco().equalsIgnoreCase("normal") && !veiculoNovo.getTipoPreco().equalsIgnoreCase("desconto")) {
-
-            throw new TipoPrecoInvalidoException("");
-        }
+        double precoFinal = strategyFactory.getStrategy(veiculoNovo.getTipoPreco()).calcularPreco(veiculoNovo.getPreco());
 
         existe.setMarca(veiculoNovo.getMarca());
         existe.setModelo(veiculoNovo.getModelo());
         existe.setAno(veiculoNovo.getAno());
-        existe.setPreco(veiculoNovo.getPreco());
+        existe.setPreco(precoFinal);
         existe.setTipo(veiculoNovo.getTipo());
         existe.setStatus(veiculoNovo.getStatus());
         existe.setTipoPreco(veiculoNovo.getTipoPreco());
+
         return veiculoRepository.save(existe);
     }
 
@@ -47,6 +45,7 @@ public class VeiculoService {
     }
 
     public Veiculo buscarPorId(Long id) {
-        return veiculoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Veiculo não encontrado: " + id));
+        return veiculoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Veiculo nao encontrado: " + id));
     }
 }
