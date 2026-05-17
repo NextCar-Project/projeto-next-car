@@ -21,20 +21,11 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class VendaFacadeTest {
 
-    @Mock 
-    private VendaService vendaService;
-    
-    @Mock 
-    private VeiculoService veiculoService;
-    
-    @Mock 
-    private UsuarioService usuarioService;
-    
-    @Mock 
-    private PrecoStrategyFactory strategyFactory;
-    
-    @Mock 
-    private PrecoStrategy precoStrategy;
+    @Mock private VendaService vendaService;
+    @Mock private VeiculoService veiculoService;
+    @Mock private UsuarioService usuarioService;
+    @Mock private PrecoStrategyFactory strategyFactory;
+    @Mock private PrecoStrategy precoStrategy;
 
     @InjectMocks
     private VendaFacade facade;
@@ -108,6 +99,28 @@ class VendaFacadeTest {
 
         assertEquals("vendido", veiculo.getStatus());
         verify(veiculoService).save(veiculo);
+    }
+
+    @Test
+    void testRegistrarVendaVeiculoJaVendido() {
+        veiculo.setStatus("vendido");
+
+        VendaRequestDTO dto = new VendaRequestDTO();
+        dto.setData(LocalDate.now());
+        dto.setValorFinal(80000.0);
+        dto.setVeiculoId(1L);
+        dto.setUsuarioId(1L);
+
+        when(veiculoService.buscarPorId(1L)).thenReturn(veiculo);
+        when(usuarioService.buscarPorId(1L)).thenReturn(usuario);
+        when(strategyFactory.getStrategy("normal")).thenReturn(precoStrategy);
+        when(precoStrategy.calcularPreco(80000.0)).thenReturn(80000.0);
+        when(vendaService.save(any(Venda.class))).thenReturn(venda);
+
+        facade.registrarVenda(dto);
+
+        assertEquals("vendido", veiculo.getStatus());
+        verify(veiculoService, never()).save(any());
     }
 
     @Test
