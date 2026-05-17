@@ -21,9 +21,20 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class VendaFacadeTest {
 
-    @Mock private VendaService vendaService;
-    @Mock private VeiculoService veiculoService;
-    @Mock private UsuarioService usuarioService;
+    @Mock 
+    private VendaService vendaService;
+    
+    @Mock 
+    private VeiculoService veiculoService;
+    
+    @Mock 
+    private UsuarioService usuarioService;
+    
+    @Mock 
+    private PrecoStrategyFactory strategyFactory;
+    
+    @Mock 
+    private PrecoStrategy precoStrategy;
 
     @InjectMocks
     private VendaFacade facade;
@@ -38,12 +49,15 @@ class VendaFacadeTest {
         veiculo.setId(1L);
         veiculo.setMarca("Toyota");
         veiculo.setModelo("Corolla");
+        veiculo.setTipoPreco("normal");
+        veiculo.setPreco(80000.0);
+        veiculo.setStatus("disponivel");
 
         usuario = new Usuario();
         usuario.setId(1L);
         usuario.setNome("Emerson");
         usuario.setLogin("emerson@test.com");
-        usuario.setSenha("123");
+        usuario.setSenha("hash");
 
         venda = new Venda(LocalDate.now(), 80000.0, veiculo, usuario);
         venda.setId(1L);
@@ -59,6 +73,8 @@ class VendaFacadeTest {
 
         when(veiculoService.buscarPorId(1L)).thenReturn(veiculo);
         when(usuarioService.buscarPorId(1L)).thenReturn(usuario);
+        when(strategyFactory.getStrategy("normal")).thenReturn(precoStrategy);
+        when(precoStrategy.calcularPreco(80000.0)).thenReturn(80000.0);
         when(vendaService.save(any(Venda.class))).thenReturn(venda);
 
         VendaResponseDTO response = facade.registrarVenda(dto);
@@ -67,15 +83,39 @@ class VendaFacadeTest {
         assertEquals(80000.0, response.getValorFinal());
         assertEquals("Toyota Corolla", response.getVeiculoDescricao());
         assertEquals("Emerson", response.getUsuarioNome());
+        verify(strategyFactory).getStrategy("normal");
+        verify(precoStrategy).calcularPreco(80000.0);
         verify(veiculoService).buscarPorId(1L);
         verify(usuarioService).buscarPorId(1L);
         verify(vendaService).save(any(Venda.class));
     }
 
     @Test
+    void testRegistrarVendaMudaStatusParaVendido() {
+        VendaRequestDTO dto = new VendaRequestDTO();
+        dto.setData(LocalDate.now());
+        dto.setValorFinal(80000.0);
+        dto.setVeiculoId(1L);
+        dto.setUsuarioId(1L);
+
+        when(veiculoService.buscarPorId(1L)).thenReturn(veiculo);
+        when(usuarioService.buscarPorId(1L)).thenReturn(usuario);
+        when(strategyFactory.getStrategy("normal")).thenReturn(precoStrategy);
+        when(precoStrategy.calcularPreco(80000.0)).thenReturn(80000.0);
+        when(vendaService.save(any(Venda.class))).thenReturn(venda);
+
+        facade.registrarVenda(dto);
+
+        assertEquals("vendido", veiculo.getStatus());
+        verify(veiculoService).save(veiculo);
+    }
+
+    @Test
     void testListarVendas() {
         when(vendaService.find()).thenReturn(List.of(venda));
+
         List<VendaResponseDTO> lista = facade.listarVendas();
+
         assertEquals(1, lista.size());
         verify(vendaService).find();
     }
