@@ -1,4 +1,3 @@
-/* Variáveis de Cores inspiradas no Google Material Design 3 */
 :root {
     --bg-primary: #f8f9fa;
     --bg-surface: #ffffff;
@@ -17,7 +16,6 @@
     --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
 }
 
-/* Tema Escuro - Estilo Google Dark Mode */
 [data-theme="dark"] {
     --bg-primary: #0f0f0f;
     --bg-surface: #1f1f1f;
@@ -55,7 +53,6 @@ body {
     min-height: 100vh;
 }
 
-/* Menu Lateral Estilo Google Console */
 .sidebar {
     width: 256px;
     background-color: var(--bg-sidebar);
@@ -118,14 +115,12 @@ body {
     color: var(--google-blue);
 }
 
-/* Painel de Conteúdo */
 .content {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* Barra Superior */
 .top-bar {
     height: 64px;
     background-color: var(--bg-surface);
@@ -200,7 +195,6 @@ body {
     font-size: 24px;
 }
 
-/* Tabelas */
 .table-container {
     background: var(--bg-surface);
     border: 1px solid var(--border-color);
@@ -228,7 +222,6 @@ th {
 tr:last-child td { border-bottom: none; }
 tr:hover td { background-color: var(--bg-primary); }
 
-/* Tags de Status */
 .status-tag {
     padding: 4px 12px;
     border-radius: 16px;
@@ -240,7 +233,6 @@ tr:hover td { background-color: var(--bg-primary); }
     display: inline-block;
 }
 
-/* Botões do Google */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -278,7 +270,6 @@ tr:hover td { background-color: var(--bg-primary); }
 .btn-delete { background: transparent; color: #d93025; border-color: var(--border-color); }
 .btn-delete:hover { background-color: #fce8e6; }
 
-/* Modais */
 .modal {
     display: none;
     position: fixed;
@@ -312,7 +303,6 @@ tr:hover td { background-color: var(--bg-primary); }
     color: var(--text-secondary);
 }
 
-/* Formulários */
 .form-group { margin-bottom: 20px; }
 .form-group label {
     display: block;
