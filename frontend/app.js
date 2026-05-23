@@ -1,13 +1,8 @@
-// Constantes das APIs
 const API_USUARIO = "http://localhost:8080/usuarios";
 const API_VEICULO = "http://localhost:8080/veiculos";
 const API_VENDA = "http://localhost:8080/vendas";
 
-// ==========================================
-// RECURSOS DE TEMA (CLARO/ESCURO) E VISIBILIDADE DA SENHA
-// ==========================================
 
-// Alternador de Tema
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 
@@ -30,7 +25,6 @@ themeToggleBtn.addEventListener('click', () => {
     localStorage.setItem('theme', newTheme);
 });
 
-// Revelar/Ocultar Senha
 const togglePasswordBtn = document.getElementById('toggle-password-btn');
 const passwordInput = document.getElementById('usuario-senha');
 const passwordIcon = document.getElementById('password-icon');
@@ -45,9 +39,6 @@ togglePasswordBtn.addEventListener('click', () => {
     }
 });
 
-// ==========================================
-// BUSCA INTEGRADA EM TEMPO REAL (CORRIGIDO)
-// ==========================================
 document.getElementById('global-search').addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
     const activeSection = document.querySelector('.content-section.active');
@@ -58,14 +49,13 @@ document.getElementById('global-search').addEventListener('input', (e) => {
     rows.forEach(row => {
         const rowText = row.innerText.toLowerCase();
         if (rowText.includes(searchTerm)) {
-            row.style.display = ''; // Exibe a linha normalmente se bater com a busca
+            row.style.display = '';
         } else {
-            row.style.display = 'none'; // Esconde a linha caso não bata com a busca
+            row.style.display = 'none';
         }
     });
 });
 
-// Limpa o campo de busca ao trocar de aba
 function clearSearchInput() {
     const searchInput = document.getElementById('global-search');
     if (searchInput) {
@@ -73,9 +63,6 @@ function clearSearchInput() {
     }
 }
 
-// ==========================================
-// CONTROLE DE NAVEGAÇÃO (SPA)
-// ==========================================
 document.querySelectorAll('.nav-btn').forEach(button => {
     button.addEventListener('click', () => {
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -108,9 +95,6 @@ function closeModal(id) {
     if(id === 'vendaModal') document.getElementById('venda-form').reset();
 }
 
-// ==========================================
-// OPERAÇÕES DE VEÍCULOS
-// ==========================================
 async function loadVeiculos() {
     try {
         const res = await fetch(API_VEICULO);
@@ -188,9 +172,6 @@ async function deleteVeiculo(id) {
     }
 }
 
-// ==========================================
-// OPERAÇÕES DE USUÁRIOS
-// ==========================================
 async function loadUsuarios() {
     try {
         const res = await fetch(API_USUARIO);
@@ -255,9 +236,6 @@ async function deleteUsuario(id) {
     }
 }
 
-// ==========================================
-// OPERAÇÕES DE VENDAS
-// ==========================================
 async function loadVendas() {
     try {
         const res = await fetch(API_VENDA);
@@ -324,7 +302,7 @@ document.getElementById('venda-form').addEventListener('submit', async (e) => {
         data: document.getElementById('venda-data').value,
         veiculoId: parseInt(document.getElementById('venda-veiculo').value),
         usuarioId: parseInt(document.getElementById('venda-usuario').value),
-        valorFinal: 1.0 // Passa liso pela validação do DTO e o Service sobrescreve
+        valorFinal: 1.0 
     };
 
     try {
