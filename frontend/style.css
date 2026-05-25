@@ -361,3 +361,43 @@ tr:hover td { background-color: var(--bg-primary); }
     font-size: 13px;
     margin-bottom: 20px;
 }
+
+.main-footer {
+    margin-top: auto;
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding: 20px 40px;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--google-blue);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.footer-link:hover {
+    background-color: var(--google-blue-light);
+    color: var(--google-blue-hover);
+}
+
+.github-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
