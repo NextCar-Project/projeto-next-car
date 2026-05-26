@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextCar - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="material-icons brand-icon">directions_car</span>
+            <h2>NextCar</h2>
+        </div>
+        <nav>
+            <button class="nav-btn active" data-target="veiculos-sect">
+                <span class="material-icons">directions_car</span> Veículos
+            </button>
+            <button class="nav-btn" data-target="usuarios-sect">
+                <span class="material-icons">people</span> Usuários
+            </button>
+            <button class="nav-btn" data-target="vendas-sect">
+                <span class="material-icons">monetization_on</span> Vendas
+            </button>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="top-bar">
+            <div class="search-bar-placeholder">
+                <span class="material-icons">search</span>
+                <input type="text" id="global-search" placeholder="Pesquisar nesta aba...">
+            </div>
+            <button id="theme-toggle" class="icon-btn" title="Alternar tema">
+                <span class="material-icons" id="theme-icon">dark_mode</span>
+            </button>
+        </header>
+
+        <section id="veiculos-sect" class="content-section active">
+            <div class="section-header">
+                <h2>Gerenciar Veículos</h2>
+                <button class="btn btn-primary" onclick="openModal('veiculoModal')">
+                    <span class="material-icons">add</span> Novo Veículo
+                </button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Ano</th>
+                        <th>Preço Base</th>
+                        <th>Tipo</th>
+                        <th>Status</th>
+                        <th>Tipo Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody id="veiculos-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="usuarios-sect" class="content-section">
+            <div class="section-header">
+                <h2>Gerenciar Usuários</h2>
+                <button class="btn btn-primary" onclick="openModal('usuarioModal')">
+                    <span class="material-icons">add</span> Novo Usuário
+                </button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Login (Email)</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody id="usuarios-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="vendas-sect" class="content-section">
+            <div class="section-header">
+                <h2>Registrar & Listar Vendas</h2>
+                <button class="btn btn-primary" onclick="openVendaModal()">
+                    <span class="material-icons">add</span> Nova Venda
+                </button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Veículo</th>
+                        <th>Vendedor</th>
+                        <th>Valor Final</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody id="vendas-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <p>&copy; 2026 NextCar - Sistema de Gestão de Vendas de Veículos.</p>
+                <a href="https://github.com/NextCar-Project/projeto-next-car" target="_blank" class="footer-link">
+                    <svg class="github-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                    </svg>
+                    Repositório Oficial no GitHub
+                </a>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<div id="veiculoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('veiculoModal')">&times;</span>
+        <h3 id="veiculo-modal-title">Cadastrar Veículo</h3>
+        <form id="veiculo-form">
+            <input type="hidden" id="veiculo-id">
+            <div class="form-group">
+                <label>Marca</label>
+                <input type="text" id="veiculo-marca" required>
+            </div>
+            <div class="form-group">
+                <label>Modelo</label>
+                <input type="text" id="veiculo-modelo" required>
+            </div>
+            <div class="form-group">
+                <label>Ano</label>
+                <input type="number" id="veiculo-ano" min="1900" required>
+            </div>
+            <div class="form-group">
+                <label>Preço</label>
+                <input type="number" id="veiculo-preco" step="0.01" min="0" required>
+            </div>
+            <div class="form-group">
+                <label>Tipo</label>
+                <input type="text" id="veiculo-tipo" placeholder="Ex: Sedã, SUV" required>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select id="veiculo-status" required>
+                    <option value="disponivel">Disponível</option>
+                    <option value="vendido">Vendido</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tipo de Preço</label>
+                <select id="veiculo-tipoPreco" required>
+                    <option value="normal">Normal (Sem Alteração)</option>
+                    <option value="desconto">Desconto (10% OFF)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<div id="usuarioModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('usuarioModal')">&times;</span>
+        <h3 id="usuario-modal-title">Cadastrar Usuário</h3>
+        <form id="usuario-form">
+            <input type="hidden" id="usuario-id">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" id="usuario-nome" required>
+            </div>
+            <div class="form-group">
+                <label>Login (Email)</label>
+                <input type="email" id="usuario-login" required>
+            </div>
+            <div class="form-group" id="senha-group">
+                <label>Senha</label>
+                <div class="password-wrapper">
+                    <input type="password" id="usuario-senha" required>
+                    <button type="button" id="toggle-password-btn" class="password-toggle" title="Mostrar senha">
+                        <span class="material-icons" id="password-icon">visibility</span>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<div id="vendaModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('vendaModal')">&times;</span>
+        <h3>Registrar Venda</h3>
+        <p class="info-alert">O valor final do veiculo será calculado ao fim da compra.</p>
+        <form id="venda-form">
+            <div class="form-group">
+                <label>Data da Venda</label>
+                <input type="date" id="venda-data" required>
+            </div>
+            <div class="form-group">
+                <label>Veículo</label>
+                <select id="venda-veiculo" required></select>
+            </div>
+            <div class="form-group">
+                <label>Usuário</label>
+                <select id="venda-usuario" required></select>
+            </div>
+            <button type="submit" class="btn btn-success">Confirmar Venda</button>
+        </form>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
