@@ -27,6 +27,7 @@ Projeto desenvolvido durante a disciplina de Análise e Projeto de Software.
 </p>
 
 ## 🌐 Documentação
+- 📄 **Documentação em PDF**: [Clique aqui para acessar](SAD_NextCar_V1.0.pdf)
 
 ## 💻 Projeto
 
