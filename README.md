@@ -87,10 +87,12 @@ flowchart LR
 
 User[Usuário]
 
+Frontend[Interface]
 Backend[Aplicação Next Car]
 DB[(Banco de Dados)]
 
-User --> Backend
+User --> Frontend
+Frontend --> Backend
 Backend --> DB
 ```
 
