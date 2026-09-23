@@ -136,13 +136,13 @@ Negociações --> DB
     </td>
     <td align="center">
       <img src="assets/Marcela.png" width="120px;" alt="Foto da Marcela"/><br>
-      <a href="https://www.linkedin.com/in/maria/" target="_blank">
+      <a href= "https://www.linkedin.com/in/marcela-cristine-cantalice-santos-994309410/" target="_blank">
         <sub><b>Marcela Cantalice</b></sub>
       </a>
     </td>
     <td align="center">
       <img src="assets/Marcos.png" width="120px;" alt="Foto do Marcos"/><br>
-      <a href="https://www.linkedin.com/in/marcela-cristine-cantalice-santos-994309410/" target="_blank">
+      <a href="https://www.linkedin.com/in/marcos-dalyson-9457373b3?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">
         <sub><b>Marcos Dalyson</b></sub>
       </a>
     </td>
